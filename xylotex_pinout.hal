@@ -36,6 +36,7 @@ setp parport.0.reset-time 2000
 setp stepgen.0.stepspace 0
 setp stepgen.1.stepspace 0
 setp stepgen.2.stepspace 0
-setp stepgen.0.doublefreq 1
-setp stepgen.1.doublefreq 1
-setp stepgen.2.doublefreq 1
+
+setp stepgen.0.maxaccel 40
+setp stepgen.1.maxaccel 40
+setp stepgen.2.maxaccel 40

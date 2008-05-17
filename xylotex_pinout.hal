@@ -40,3 +40,7 @@ setp stepgen.2.stepspace 0
 setp stepgen.0.maxaccel 40
 setp stepgen.1.maxaccel 40
 setp stepgen.2.maxaccel 40
+
+net Xen => parport.0.pin-08-out parport.0.pin-09-out
+setp parport.0.pin-08-out-invert 1
+setp parport.0.pin-09-out-invert 1

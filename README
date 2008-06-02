@@ -1,2 +1,2 @@
-This configuration step is for the Zenbot CNC Mini Router
-with Xylotex driver board in half-step configuration.
+This configuration is for the Zenbot CNC Mini Router with Xylotex driver board
+in 1/8 step mode, using the pluto-b board for step generation.

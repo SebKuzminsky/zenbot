@@ -1,5 +1,18 @@
-net jogincr axisui.jog.increment => axis.0.jog-scale axis.1.jog-scale
-net jogincr => axis.2.jog-scale
+loadrt scale
+loadrt ilowpass
+addf scale.0 servo-thread
+addf ilowpass.0 servo-thread
+
+setp ilowpass.0.scale 100
+#setp ilowpass.0.gain .5
+net jogcountraw m5i20.0.enc-01-count => ilowpass.0.in
+net jogcount ilowpass.0.out => axis.0.jog-counts axis.1.jog-counts
+net jogcount                => axis.2.jog-counts
+
+net jogincr-big axisui.jog.increment => scale.0.in
+setp scale.0.gain .00025
+net jogincr scale.0.out => axis.0.jog-scale axis.1.jog-scale axis.2.jog-scale
+
 net jogx axisui.jog.x => axis.0.jog-enable
 net jogy axisui.jog.y => axis.1.jog-enable
 net jogz axisui.jog.z => axis.2.jog-enable

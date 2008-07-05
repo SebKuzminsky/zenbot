@@ -1,5 +1,2 @@
-loadusr -W hal_input HIDKeys
-net jogcount input.0.rel-rz-counts => axis.0.jog-counts axis.1.jog-counts
-net jogcount input.0.rel-rz-counts => axis.2.jog-counts
-net spindle-on motion.spindle-on => input.0.led-numl
-net program-resume input.0.btn-left => halui.program.resume
+loadrt hal_m5i20
+addf m5i20.0.encoder-read servo-thread

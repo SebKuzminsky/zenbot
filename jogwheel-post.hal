@@ -1,5 +1,0 @@
-net jogincr axisui.jog.increment => axis.0.jog-scale axis.1.jog-scale
-net jogincr => axis.2.jog-scale
-net jogx axisui.jog.x => axis.0.jog-enable
-net jogy axisui.jog.y => axis.1.jog-enable
-net jogz axisui.jog.z => axis.2.jog-enable

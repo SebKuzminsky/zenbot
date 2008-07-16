@@ -1,2 +1,0 @@
-loadrt hal_m5i20
-addf m5i20.0.encoder-read servo-thread

@@ -34,4 +34,4 @@ net estop-loop iocontrol.0.user-enable-out iocontrol.0.emc-enable-in
 loadrt hal_m5i20
 addf m5i20.0.encoder-read servo-thread
 
-net Yhome m5i20.0.enc-00-index => axis.1.home-sw-in axis.1.pos-lim-sw-in
+net Yhome m5i20.0.enc-00-index => axis.1.home-sw-in axis.1.neg-lim-sw-in

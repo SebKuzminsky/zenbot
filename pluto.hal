@@ -35,3 +35,5 @@ loadrt hal_m5i20
 addf m5i20.0.encoder-read servo-thread
 
 net tool-sensor m5i20.0.enc-00-index => motion.probe-input
+net xhome m5i20.0.enc-02-index => axis.0.home-sw-in
+net yhome m5i20.0.enc-03-index => axis.1.home-sw-in

@@ -1,0 +1,11 @@
+Spindle mounting plate:
+Hole pattern 3.25 x 1 (dremel)
+1/4-20 screws
+distance from plate to motor: as small as possible
+    presently: about 1.5"
+
+
+
+2x2.5 to mount to Z axis
+
+request plate hole pattern 2x2, holes for 1/4-20 screws, ?? oversize

@@ -9,3 +9,14 @@ distance from plate to motor: as small as possible
 2x2.5 to mount to Z axis
 
 request plate hole pattern 2x2, holes for 1/4-20 screws, ?? oversize
+
+
+motor shaft measured .1967, datasheet .1968 (=5.00mm?)
+coupler .197 / ~.25
+
+motor 4218l family 4218l-01-11
+2A/ph 75 oz-in  1.2ohm/ph  2.6mH/ph   inertia 0.37 oz-in^2
+http://www.linengineering.com/site/products/4218.html
+
+current set was 50% (1.44vref), increased to 70% (2.00vref) when machine
+started to stall on 9/2/2008

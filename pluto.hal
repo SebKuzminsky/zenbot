@@ -3,6 +3,7 @@ loadrt [EMCMOT]EMCMOT base_period_nsec=[EMCMOT]PERIOD servo_period_nsec=[EMCMOT]
 
 loadrt pluto_step
 loadrt debounce cfg=3
+loadrt ddt count=6
 loadrt hal_m5i20
 
 net Xenable axis.0.amp-enable-out => pluto-step.dout.09 pluto-step.stepgen.0.enable
@@ -31,6 +32,13 @@ addf motion-command-handler servo-thread
 addf motion-controller servo-thread
 addf pluto-step.write servo-thread
 
+addf ddt.0 servo-thread
+addf ddt.1 servo-thread
+addf ddt.2 servo-thread
+addf ddt.3 servo-thread
+addf ddt.4 servo-thread
+addf ddt.5 servo-thread
+
 net tool-prep-loop iocontrol.0.tool-prepare => iocontrol.0.tool-prepared
 net estop-loop iocontrol.0.user-enable-out iocontrol.0.emc-enable-in
 
@@ -50,4 +58,16 @@ loadusr -W hal_manualtoolchange
 net tool-change hal_manualtoolchange.change iocontrol.0.tool-change 
 net tool-changed hal_manualtoolchange.changed iocontrol.0.tool-changed
 net tool-prep-number hal_manualtoolchange.number iocontrol.0.tool-prep-number
+
+net Xpos-cmd => ddt.0.in
+net Xvel ddt.0.out => ddt.1.in
+net Xacc <= ddt.1.out
+
+net Ypos-cmd => ddt.2.in
+net Yvel ddt.2.out => ddt.3.in
+net Yacc <= ddt.3.out
+
+net Zpos-cmd => ddt.4.in
+net Zvel ddt.4.out => ddt.5.in
+net Zacc <= ddt.5.out
 

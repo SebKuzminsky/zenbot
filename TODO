@@ -1,0 +1,9 @@
+* disassemble almost everything
+* determine leadscrew lengths & cut.  add flats for coupling end
+* drill & tap mounting holes for 3 nuts (#4?)
+* drill & tap mounting holes for Z home switch (#2)
+* install nuts
+* reassemble, leaving bottom of "Y" box off
+* new TLO switch mounting?  make it taller, use close-fit screw holes
+
+new SCALE for 1/8 microstepping and 16TPI: 200*8*16 = 25600

@@ -20,3 +20,7 @@ http://www.linengineering.com/site/products/4218.html
 
 current set was 50% (1.44vref), increased to 70% (2.00vref) when machine
 started to stall on 9/2/2008
+
+X screw length approx. 10 3/4 inches
+Z screw length less than 7 inches
+Y screw length less than 15 inches

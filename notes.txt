@@ -24,3 +24,8 @@ started to stall on 9/2/2008
 X screw length approx. 10 3/4 inches
 Z screw length less than 7 inches
 Y screw length less than 15 inches
+
+switches (L-R):
+blue/green
+grey/black
+yellow/orange

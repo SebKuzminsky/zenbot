@@ -44,13 +44,13 @@ net estop-loop iocontrol.0.user-enable-out iocontrol.0.emc-enable-in
 
 net spindle motion.spindle-on => pluto-step.dout.00
 
-net tls-raw <= pluto-step.din.00 => debounce.0.0.in
+net tls-raw <= pluto-step.din.01 => debounce.0.0.in
 net tls-filtered debounce.0.0.out => motion.probe-input
 
 net xhome-raw <= pluto-step.din.02 => debounce.0.1.in
 net xhome-filtered debounce.0.1.out => axis.0.home-sw-in
 
-net yhome-raw <= pluto-step.din.01 => debounce.0.2.in
+net yhome-raw <= pluto-step.din.03 => debounce.0.2.in
 net yhome-filtered debounce.0.2.out => axis.1.home-sw-in
 
 loadusr -W hal_manualtoolchange

@@ -30,3 +30,8 @@ switches (L-R):
 blue/green
 grey/black
 yellow/orange
+
+
+accessible table, counting by mounting holes:
+    left  0 ...  8   right   -- accessible 1...7
+    front 0 ... 12   back    -- accessible 1...8

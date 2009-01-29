@@ -7,7 +7,7 @@ addf ilowpass.0 servo-thread
 setp ilowpass.0.scale 100
 setp ilowpass.0.gain .85
 
-net jogcount <= m5i20.0.enc-00-count => ilowpass.0.in
+net jogcount => ilowpass.0.in
 net jogscaled <= ilowpass.0.out
 net jogscaled => axis.0.jog-counts axis.1.jog-counts axis.2.jog-counts
 

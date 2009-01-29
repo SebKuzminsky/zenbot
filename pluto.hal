@@ -4,7 +4,6 @@ loadrt [EMCMOT]EMCMOT base_period_nsec=[EMCMOT]PERIOD servo_period_nsec=[EMCMOT]
 loadrt pluto_step
 loadrt debounce cfg=4
 loadrt ddt count=6
-loadrt hal_m5i20
 
 net Xenable axis.0.amp-enable-out => pluto-step.dout.09 pluto-step.stepgen.0.enable
 setp pluto-step.dout.09-invert 1
@@ -27,7 +26,6 @@ setp pluto-step.stepgen.2.scale [AXIS_2]INPUT_SCALE
 
 addf pluto-step.read servo-thread
 addf debounce.0 servo-thread
-addf m5i20.0.encoder-read servo-thread
 addf motion-command-handler servo-thread
 addf motion-controller servo-thread
 addf pluto-step.write servo-thread
@@ -44,7 +42,7 @@ net estop-loop iocontrol.0.user-enable-out iocontrol.0.emc-enable-in
 
 net spindle motion.spindle-on => pluto-step.dout.00
 
-net tls-raw <= pluto-step.din.01 => debounce.0.0.in
+net tls-raw <= pluto-step.din.05 => debounce.0.0.in
 net tls-filtered debounce.0.0.out => motion.probe-input
 
 net xhome-raw <= pluto-step.din.02 => debounce.0.1.in
@@ -53,7 +51,7 @@ net xhome-filtered debounce.0.1.out => axis.0.home-sw-in
 net yhome-raw <= pluto-step.din.03 => debounce.0.2.in
 net yhome-filtered debounce.0.2.out => axis.1.home-sw-in
 
-net zhome-raw <= pluto-step.din.05 => debounce.0.3.in
+net zhome-raw <= pluto-step.din.01 => debounce.0.3.in
 net zhome-filtered debounce.0.3.out => axis.2.home-sw-in
 
 loadusr -W hal_manualtoolchange

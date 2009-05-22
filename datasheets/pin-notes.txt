@@ -1,0 +1,39 @@
+hm2: 1=step, 3=dir
+     13=step, 15=dir
+    25=step, 27=dir
+zenbot: step=2 dir=3
+    step=4 dir=5
+    step=6 dir=7
+
+27-3 dir    dir
+25-2 step   step
+15-5 dir
+13-4 step
+3-7  dir
+1-6  step
+
+gpio.###  p5 pin #
+48        1
+49        3
+50        5
+51	7
+52	9
+53	11
+54	13
+55	15
+56	17
+57	19
+58	21
+59	23
+60	25
+61	27
+62	29
+63	31
+64	33        enables (rev2)
+65	35        enables (rev2)
+66	37        enables (rev2)
+67	39        probe-in
+68	41        x lim
+69	43        y lim
+70	45        z lim
+71	47        spindle

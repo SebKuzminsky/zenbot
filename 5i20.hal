@@ -8,34 +8,34 @@ loadrt debounce cfg=4
 loadrt ddt count=6
 
 show param *gpio.064*
-net Xenable axis.0.amp-enable-out => hm2_5i20.0.gpio.064.out hm2_5i20.0.stepgen.00.enable
+net Xenable axis.0.amp-enable-out => hm2_5i20.0.gpio.064.out hm2_5i20.0.stepgen.02.enable
 setp hm2_5i20.0.gpio.064.invert_output 1
 setp hm2_5i20.0.gpio.064.is_output 1
 net Yenable axis.1.amp-enable-out => hm2_5i20.0.gpio.065.out hm2_5i20.0.stepgen.01.enable
 setp hm2_5i20.0.gpio.065.invert_output 1
 setp hm2_5i20.0.gpio.065.is_output 1
-net Zenable axis.2.amp-enable-out => hm2_5i20.0.gpio.066.out hm2_5i20.0.stepgen.02.enable
+net Zenable axis.2.amp-enable-out => hm2_5i20.0.gpio.066.out hm2_5i20.0.stepgen.00.enable
 setp hm2_5i20.0.gpio.066.invert_output 1
 setp hm2_5i20.0.gpio.066.is_output 1
 
-net Xpos-cmd axis.0.motor-pos-cmd => hm2_5i20.0.stepgen.00.position-cmd
+net Xpos-cmd axis.0.motor-pos-cmd => hm2_5i20.0.stepgen.02.position-cmd
 net Ypos-cmd axis.1.motor-pos-cmd => hm2_5i20.0.stepgen.01.position-cmd
-net Zpos-cmd axis.2.motor-pos-cmd => hm2_5i20.0.stepgen.02.position-cmd
+net Zpos-cmd axis.2.motor-pos-cmd => hm2_5i20.0.stepgen.00.position-cmd
 
-net Xpos-fb hm2_5i20.0.stepgen.00.position-fb => axis.0.motor-pos-fb
+net Xpos-fb hm2_5i20.0.stepgen.02.position-fb => axis.0.motor-pos-fb
 net Ypos-fb hm2_5i20.0.stepgen.01.position-fb => axis.1.motor-pos-fb
-net Zpos-fb hm2_5i20.0.stepgen.02.position-fb => axis.2.motor-pos-fb
+net Zpos-fb hm2_5i20.0.stepgen.00.position-fb => axis.2.motor-pos-fb
 
-setp hm2_5i20.0.stepgen.00.position-scale [AXIS_0]INPUT_SCALE
+setp hm2_5i20.0.stepgen.02.position-scale [AXIS_0]INPUT_SCALE
 setp hm2_5i20.0.stepgen.01.position-scale [AXIS_1]INPUT_SCALE
-setp hm2_5i20.0.stepgen.02.position-scale [AXIS_2]INPUT_SCALE
+setp hm2_5i20.0.stepgen.00.position-scale [AXIS_2]INPUT_SCALE
 
-setp hm2_5i20.0.stepgen.00.maxvel      [AXIS_0]MAX_VELOCITY
-setp hm2_5i20.0.stepgen.00.maxaccel    [AXIS_0]STEPGEN_MAXACCEL
-setp hm2_5i20.0.stepgen.00.dirhold     200
-setp hm2_5i20.0.stepgen.00.dirsetup    200
-setp hm2_5i20.0.stepgen.00.steplen    2000
-setp hm2_5i20.0.stepgen.00.stepspace  1000
+setp hm2_5i20.0.stepgen.02.maxvel      [AXIS_0]MAX_VELOCITY
+setp hm2_5i20.0.stepgen.02.maxaccel    [AXIS_0]STEPGEN_MAXACCEL
+setp hm2_5i20.0.stepgen.02.dirhold     200
+setp hm2_5i20.0.stepgen.02.dirsetup    200
+setp hm2_5i20.0.stepgen.02.steplen    2000
+setp hm2_5i20.0.stepgen.02.stepspace  1000
 
 setp hm2_5i20.0.stepgen.01.maxvel      [AXIS_1]MAX_VELOCITY
 setp hm2_5i20.0.stepgen.01.maxaccel    [AXIS_1]STEPGEN_MAXACCEL
@@ -44,12 +44,12 @@ setp hm2_5i20.0.stepgen.01.dirsetup    200
 setp hm2_5i20.0.stepgen.01.steplen    2000
 setp hm2_5i20.0.stepgen.01.stepspace  1000
 
-setp hm2_5i20.0.stepgen.02.maxvel      [AXIS_2]MAX_VELOCITY
-setp hm2_5i20.0.stepgen.02.maxaccel    [AXIS_2]STEPGEN_MAXACCEL
-setp hm2_5i20.0.stepgen.02.dirhold     200
-setp hm2_5i20.0.stepgen.02.dirsetup    200
-setp hm2_5i20.0.stepgen.02.steplen    2000
-setp hm2_5i20.0.stepgen.02.stepspace  1000
+setp hm2_5i20.0.stepgen.00.maxvel      [AXIS_2]MAX_VELOCITY
+setp hm2_5i20.0.stepgen.00.maxaccel    [AXIS_2]STEPGEN_MAXACCEL
+setp hm2_5i20.0.stepgen.00.dirhold     200
+setp hm2_5i20.0.stepgen.00.dirsetup    200
+setp hm2_5i20.0.stepgen.00.steplen    2000
+setp hm2_5i20.0.stepgen.00.stepspace  1000
 
 addf hm2_5i20.0.read servo-thread
 addf debounce.0 servo-thread

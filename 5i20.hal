@@ -85,7 +85,6 @@ net estop-loop iocontrol.0.user-enable-out iocontrol.0.emc-enable-in
 
 net spindle motion.spindle-on => hm2_5i20.0.gpio.071.out
 setp hm2_5i20.0.gpio.071.is_output 1
-setp hm2_5i20.0.gpio.071.is_opendrain 1
 
 net tls-raw <= hm2_5i20.0.gpio.070.in => debounce.0.0.in
 net tls-filtered debounce.0.0.out => motion.probe-input

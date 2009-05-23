@@ -7,16 +7,29 @@ loadrt hm2_pci config="firmware=hm2/5i20/SVST8_4.BIT num_encoders=0 num_pwmgens=
 loadrt debounce cfg=4
 loadrt ddt count=6
 
+# push-pull outputs exhibit terrible ringing on both edges.  opendrain outputs
+# exhibit terrible ringing on only the falling edge, but that's fine since
+# xylotex steps on the rising edge (lucky for me!)
+setp hm2_5i20.0.gpio.048.is_opendrain 1
+setp hm2_5i20.0.gpio.049.is_opendrain 1
+setp hm2_5i20.0.gpio.054.is_opendrain 1
+setp hm2_5i20.0.gpio.055.is_opendrain 1
+setp hm2_5i20.0.gpio.060.is_opendrain 1
+setp hm2_5i20.0.gpio.061.is_opendrain 1
+
 show param *gpio.064*
 net Xenable axis.0.amp-enable-out => hm2_5i20.0.gpio.064.out hm2_5i20.0.stepgen.02.enable
 setp hm2_5i20.0.gpio.064.invert_output 1
 setp hm2_5i20.0.gpio.064.is_output 1
+setp hm2_5i20.0.gpio.064.is_opendrain 1
 net Yenable axis.1.amp-enable-out => hm2_5i20.0.gpio.065.out hm2_5i20.0.stepgen.01.enable
 setp hm2_5i20.0.gpio.065.invert_output 1
 setp hm2_5i20.0.gpio.065.is_output 1
+setp hm2_5i20.0.gpio.065.is_opendrain 1
 net Zenable axis.2.amp-enable-out => hm2_5i20.0.gpio.066.out hm2_5i20.0.stepgen.00.enable
 setp hm2_5i20.0.gpio.066.invert_output 1
 setp hm2_5i20.0.gpio.066.is_output 1
+setp hm2_5i20.0.gpio.066.is_opendrain 1
 
 net Xpos-cmd axis.0.motor-pos-cmd => hm2_5i20.0.stepgen.02.position-cmd
 net Ypos-cmd axis.1.motor-pos-cmd => hm2_5i20.0.stepgen.01.position-cmd
@@ -69,6 +82,8 @@ net tool-prep-loop iocontrol.0.tool-prepare => iocontrol.0.tool-prepared
 net estop-loop iocontrol.0.user-enable-out iocontrol.0.emc-enable-in
 
 net spindle motion.spindle-on => hm2_5i20.0.gpio.071.out
+setp hm2_5i20.0.gpio.071.is_output 1
+setp hm2_5i20.0.gpio.071.is_opendrain 1
 
 net tls-raw <= hm2_5i20.0.gpio.067.in => debounce.0.0.in
 net tls-filtered debounce.0.0.out => motion.probe-input

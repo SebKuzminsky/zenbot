@@ -20,51 +20,51 @@ setp hm2_5i20.0.gpio.061.is_opendrain 1    # X dir
 setp hm2_5i20.0.gpio.061.invert_output 1
 
 show param *gpio.064*
-net Xenable axis.0.amp-enable-out => hm2_5i20.0.gpio.064.out hm2_5i20.0.stepgen.02.enable
-setp hm2_5i20.0.gpio.064.invert_output 1
-setp hm2_5i20.0.gpio.064.is_output 1
-setp hm2_5i20.0.gpio.064.is_opendrain 1
-net Yenable axis.1.amp-enable-out => hm2_5i20.0.gpio.065.out hm2_5i20.0.stepgen.01.enable
-setp hm2_5i20.0.gpio.065.invert_output 1
-setp hm2_5i20.0.gpio.065.is_output 1
-setp hm2_5i20.0.gpio.065.is_opendrain 1
-net Zenable axis.2.amp-enable-out => hm2_5i20.0.gpio.066.out hm2_5i20.0.stepgen.00.enable
-setp hm2_5i20.0.gpio.066.invert_output 1
-setp hm2_5i20.0.gpio.066.is_output 1
-setp hm2_5i20.0.gpio.066.is_opendrain 1
+net Xenable axis.0.amp-enable-out => hm2_5i20.0.gpio.050.out hm2_5i20.0.stepgen.[AXIS_0](STEPGEN).enable
+setp hm2_5i20.0.gpio.050.invert_output 1
+setp hm2_5i20.0.gpio.050.is_output 1
+setp hm2_5i20.0.gpio.050.is_opendrain 1
+net Yenable axis.1.amp-enable-out => hm2_5i20.0.gpio.051.out hm2_5i20.0.stepgen.[AXIS_1](STEPGEN).enable
+setp hm2_5i20.0.gpio.051.invert_output 1
+setp hm2_5i20.0.gpio.051.is_output 1
+setp hm2_5i20.0.gpio.051.is_opendrain 1
+net Zenable axis.2.amp-enable-out => hm2_5i20.0.gpio.052.out hm2_5i20.0.stepgen.[AXIS_2](STEPGEN).enable
+setp hm2_5i20.0.gpio.052.invert_output 1
+setp hm2_5i20.0.gpio.052.is_output 1
+setp hm2_5i20.0.gpio.052.is_opendrain 1
 
-net Xpos-cmd axis.0.motor-pos-cmd => hm2_5i20.0.stepgen.02.position-cmd
-net Ypos-cmd axis.1.motor-pos-cmd => hm2_5i20.0.stepgen.01.position-cmd
-net Zpos-cmd axis.2.motor-pos-cmd => hm2_5i20.0.stepgen.00.position-cmd
+net Xpos-cmd axis.0.motor-pos-cmd => hm2_5i20.0.stepgen.[AXIS_0](STEPGEN).position-cmd
+net Ypos-cmd axis.1.motor-pos-cmd => hm2_5i20.0.stepgen.[AXIS_1](STEPGEN).position-cmd
+net Zpos-cmd axis.2.motor-pos-cmd => hm2_5i20.0.stepgen.[AXIS_2](STEPGEN).position-cmd
 
-net Xpos-fb hm2_5i20.0.stepgen.02.position-fb => axis.0.motor-pos-fb
-net Ypos-fb hm2_5i20.0.stepgen.01.position-fb => axis.1.motor-pos-fb
-net Zpos-fb hm2_5i20.0.stepgen.00.position-fb => axis.2.motor-pos-fb
+net Xpos-fb hm2_5i20.0.stepgen.[AXIS_0](STEPGEN).position-fb => axis.0.motor-pos-fb
+net Ypos-fb hm2_5i20.0.stepgen.[AXIS_1](STEPGEN).position-fb => axis.1.motor-pos-fb
+net Zpos-fb hm2_5i20.0.stepgen.[AXIS_2](STEPGEN).position-fb => axis.2.motor-pos-fb
 
-setp hm2_5i20.0.stepgen.02.position-scale [AXIS_0]INPUT_SCALE
-setp hm2_5i20.0.stepgen.01.position-scale [AXIS_1]INPUT_SCALE
-setp hm2_5i20.0.stepgen.00.position-scale [AXIS_2]INPUT_SCALE
+setp hm2_5i20.0.stepgen.[AXIS_0](STEPGEN).position-scale [AXIS_0]INPUT_SCALE
+setp hm2_5i20.0.stepgen.[AXIS_1](STEPGEN).position-scale [AXIS_1]INPUT_SCALE
+setp hm2_5i20.0.stepgen.[AXIS_2](STEPGEN).position-scale [AXIS_2]INPUT_SCALE
 
-setp hm2_5i20.0.stepgen.02.maxaccel    [AXIS_0]STEPGEN_MAXACCEL
-setp hm2_5i20.0.stepgen.02.dirhold     200
-setp hm2_5i20.0.stepgen.02.dirsetup    200
-setp hm2_5i20.0.stepgen.02.steplen    2000
-setp hm2_5i20.0.stepgen.02.stepspace  1000
-setp hm2_5i20.0.stepgen.02.maxvel      0
+setp hm2_5i20.0.stepgen.[AXIS_0](STEPGEN).maxaccel    [AXIS_0]STEPGEN_MAXACCEL
+setp hm2_5i20.0.stepgen.[AXIS_0](STEPGEN).dirhold     200
+setp hm2_5i20.0.stepgen.[AXIS_0](STEPGEN).dirsetup    200
+setp hm2_5i20.0.stepgen.[AXIS_0](STEPGEN).steplen    4000
+setp hm2_5i20.0.stepgen.[AXIS_0](STEPGEN).stepspace  4000
+setp hm2_5i20.0.stepgen.[AXIS_0](STEPGEN).maxvel      0
 
-setp hm2_5i20.0.stepgen.01.maxaccel    [AXIS_1]STEPGEN_MAXACCEL
-setp hm2_5i20.0.stepgen.01.dirhold     200
-setp hm2_5i20.0.stepgen.01.dirsetup    200
-setp hm2_5i20.0.stepgen.01.steplen    2000
-setp hm2_5i20.0.stepgen.01.stepspace  1000
-setp hm2_5i20.0.stepgen.01.maxvel      0
+setp hm2_5i20.0.stepgen.[AXIS_1](STEPGEN).maxaccel    [AXIS_1]STEPGEN_MAXACCEL
+setp hm2_5i20.0.stepgen.[AXIS_1](STEPGEN).dirhold     200
+setp hm2_5i20.0.stepgen.[AXIS_1](STEPGEN).dirsetup    200
+setp hm2_5i20.0.stepgen.[AXIS_1](STEPGEN).steplen    4000
+setp hm2_5i20.0.stepgen.[AXIS_1](STEPGEN).stepspace  4000
+setp hm2_5i20.0.stepgen.[AXIS_1](STEPGEN).maxvel      0
 
-setp hm2_5i20.0.stepgen.00.maxaccel    [AXIS_2]STEPGEN_MAXACCEL
-setp hm2_5i20.0.stepgen.00.dirhold     200
-setp hm2_5i20.0.stepgen.00.dirsetup    200
-setp hm2_5i20.0.stepgen.00.steplen    2000
-setp hm2_5i20.0.stepgen.00.stepspace  1000
-setp hm2_5i20.0.stepgen.00.maxvel      0
+setp hm2_5i20.0.stepgen.[AXIS_2](STEPGEN).maxaccel    [AXIS_2]STEPGEN_MAXACCEL
+setp hm2_5i20.0.stepgen.[AXIS_2](STEPGEN).dirhold     200
+setp hm2_5i20.0.stepgen.[AXIS_2](STEPGEN).dirsetup    200
+setp hm2_5i20.0.stepgen.[AXIS_2](STEPGEN).steplen    4000
+setp hm2_5i20.0.stepgen.[AXIS_2](STEPGEN).stepspace  4000
+setp hm2_5i20.0.stepgen.[AXIS_2](STEPGEN).maxvel      0
 
 addf hm2_5i20.0.read servo-thread
 addf debounce.0 servo-thread

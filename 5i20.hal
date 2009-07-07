@@ -2,74 +2,76 @@ loadrt trivkins
 loadrt [EMCMOT]EMCMOT base_period_nsec=[EMCMOT]PERIOD servo_period_nsec=[EMCMOT]PERIOD traj_period_nsec=[EMCMOT]PERIOD key=[EMCMOT]SHMEM_KEY num_joints=[TRAJ]AXES
 
 loadrt hostmot2
-loadrt hm2_pci config="firmware=hm2/5i20/SVST8_4.BIT num_encoders=0 num_pwmgens=0 num_stepgens=3"
+loadrt hm2_pci config="firmware=hm2/5i20/SV12.BIT num_encoders=11 num_pwmgens=11 num_stepgens=0"
 
+setp hm2_5i20.0.pwmgen.pwm_frequency 20000
+
+loadrt pid num_chan=3
+loadrt idb count=3
 loadrt debounce cfg=4
 loadrt ddt count=6
 
-# push-pull outputs exhibit terrible ringing on both edges.  opendrain outputs
-# exhibit terrible ringing on only the falling edge, but that's fine since
-# xylotex steps on the rising edge (lucky for me!)
-setp hm2_5i20.0.gpio.048.is_opendrain 1    # Z step
-setp hm2_5i20.0.gpio.049.is_opendrain 1    # Z dir
-setp hm2_5i20.0.gpio.054.is_opendrain 1    # Y step
-setp hm2_5i20.0.gpio.055.is_opendrain 1    # Y dir
-setp hm2_5i20.0.gpio.055.invert_output 1
-setp hm2_5i20.0.gpio.060.is_opendrain 1    # X step
-setp hm2_5i20.0.gpio.061.is_opendrain 1    # X dir
-setp hm2_5i20.0.gpio.061.invert_output 1
+show pin hm2_5i20.0.encoder.01
+net Xpos-cmd axis.0.motor-pos-cmd => pid.0.command
+net Xpid-cmd pid.0.output => idb.0.in
+net Xpwm-cmd idb.0.out => hm2_5i20.0.pwmgen.[AXIS_0](INSTANCE).value
+net Xpwm-ena axis.0.amp-enable-out => hm2_5i20.0.pwmgen.[AXIS_0](INSTANCE).enable pid.0.enable
 
-show param *gpio.064*
-net Xenable axis.0.amp-enable-out => hm2_5i20.0.gpio.050.out hm2_5i20.0.stepgen.[AXIS_0](STEPGEN).enable
-setp hm2_5i20.0.gpio.050.invert_output 1
-setp hm2_5i20.0.gpio.050.is_output 1
-setp hm2_5i20.0.gpio.050.is_opendrain 1
-net Yenable axis.1.amp-enable-out => hm2_5i20.0.gpio.051.out hm2_5i20.0.stepgen.[AXIS_1](STEPGEN).enable
-setp hm2_5i20.0.gpio.051.invert_output 1
-setp hm2_5i20.0.gpio.051.is_output 1
-setp hm2_5i20.0.gpio.051.is_opendrain 1
-net Zenable axis.2.amp-enable-out => hm2_5i20.0.gpio.052.out hm2_5i20.0.stepgen.[AXIS_2](STEPGEN).enable
-setp hm2_5i20.0.gpio.052.invert_output 1
-setp hm2_5i20.0.gpio.052.is_output 1
-setp hm2_5i20.0.gpio.052.is_opendrain 1
+net Ypos-cmd axis.1.motor-pos-cmd => pid.1.command
+net Ypid-cmd pid.1.output => idb.1.in
+net Ypwm-cmd idb.1.out => hm2_5i20.0.pwmgen.[AXIS_1](INSTANCE).value
+net Ypwm-ena axis.1.amp-enable-out => hm2_5i20.0.pwmgen.[AXIS_1](INSTANCE).enable pid.1.enable
 
-net Xpos-cmd axis.0.motor-pos-cmd => hm2_5i20.0.stepgen.[AXIS_0](STEPGEN).position-cmd
-net Ypos-cmd axis.1.motor-pos-cmd => hm2_5i20.0.stepgen.[AXIS_1](STEPGEN).position-cmd
-net Zpos-cmd axis.2.motor-pos-cmd => hm2_5i20.0.stepgen.[AXIS_2](STEPGEN).position-cmd
+net Zpos-cmd axis.2.motor-pos-cmd => pid.2.command
+net Zpid-cmd pid.2.output => idb.2.in
+net Zpwm-cmd idb.2.out => hm2_5i20.0.pwmgen.[AXIS_2](INSTANCE).value
+net Zpwm-ena axis.2.amp-enable-out => hm2_5i20.0.pwmgen.[AXIS_2](INSTANCE).enable pid.2.enable
 
-net Xpos-fb hm2_5i20.0.stepgen.[AXIS_0](STEPGEN).position-fb => axis.0.motor-pos-fb
-net Ypos-fb hm2_5i20.0.stepgen.[AXIS_1](STEPGEN).position-fb => axis.1.motor-pos-fb
-net Zpos-fb hm2_5i20.0.stepgen.[AXIS_2](STEPGEN).position-fb => axis.2.motor-pos-fb
 
-setp hm2_5i20.0.stepgen.[AXIS_0](STEPGEN).position-scale [AXIS_0]INPUT_SCALE
-setp hm2_5i20.0.stepgen.[AXIS_1](STEPGEN).position-scale [AXIS_1]INPUT_SCALE
-setp hm2_5i20.0.stepgen.[AXIS_2](STEPGEN).position-scale [AXIS_2]INPUT_SCALE
+#net Xpos-fb hm2_5i20.0.encoder.[AXIS_0](INSTANCE).position => axis.0.motor-pos-fb pid.0.feedback
+net Ypos-fb hm2_5i20.0.encoder.[AXIS_1](INSTANCE).position => axis.1.motor-pos-fb pid.1.feedback
+#net Zpos-fb hm2_5i20.0.encoder.[AXIS_2](INSTANCE).position => axis.2.motor-pos-fb pid.2.feedback
+net Xpos-cmd => axis.0.motor-pos-fb
+net Zpos-cmd => axis.2.motor-pos-fb
 
-setp hm2_5i20.0.stepgen.[AXIS_0](STEPGEN).maxaccel    [AXIS_0]STEPGEN_MAXACCEL
-setp hm2_5i20.0.stepgen.[AXIS_0](STEPGEN).dirhold     200
-setp hm2_5i20.0.stepgen.[AXIS_0](STEPGEN).dirsetup    200
-setp hm2_5i20.0.stepgen.[AXIS_0](STEPGEN).steplen    4000
-setp hm2_5i20.0.stepgen.[AXIS_0](STEPGEN).stepspace  4000
-setp hm2_5i20.0.stepgen.[AXIS_0](STEPGEN).maxvel      0
+setp pid.0.Pgain [AXIS_0]P
+setp pid.0.Igain [AXIS_0]I
+setp pid.0.Dgain [AXIS_0]D
+setp pid.0.FF1 [AXIS_0]FF1
+setp pid.0.FF2 [AXIS_0]FF2
+setp pid.0.deadband [AXIS_0]DEADBAND
+setp idb.0.amount [AXIS_0]IDEADBAND
 
-setp hm2_5i20.0.stepgen.[AXIS_1](STEPGEN).maxaccel    [AXIS_1]STEPGEN_MAXACCEL
-setp hm2_5i20.0.stepgen.[AXIS_1](STEPGEN).dirhold     200
-setp hm2_5i20.0.stepgen.[AXIS_1](STEPGEN).dirsetup    200
-setp hm2_5i20.0.stepgen.[AXIS_1](STEPGEN).steplen    4000
-setp hm2_5i20.0.stepgen.[AXIS_1](STEPGEN).stepspace  4000
-setp hm2_5i20.0.stepgen.[AXIS_1](STEPGEN).maxvel      0
+setp pid.1.Pgain [AXIS_1]P
+setp pid.1.Igain [AXIS_1]I
+setp pid.1.Dgain [AXIS_1]D
+setp pid.1.FF1 [AXIS_1]FF1
+setp pid.1.FF2 [AXIS_1]FF2
+setp pid.1.deadband [AXIS_1]DEADBAND
+setp idb.1.amount [AXIS_1]IDEADBAND
 
-setp hm2_5i20.0.stepgen.[AXIS_2](STEPGEN).maxaccel    [AXIS_2]STEPGEN_MAXACCEL
-setp hm2_5i20.0.stepgen.[AXIS_2](STEPGEN).dirhold     200
-setp hm2_5i20.0.stepgen.[AXIS_2](STEPGEN).dirsetup    200
-setp hm2_5i20.0.stepgen.[AXIS_2](STEPGEN).steplen    4000
-setp hm2_5i20.0.stepgen.[AXIS_2](STEPGEN).stepspace  4000
-setp hm2_5i20.0.stepgen.[AXIS_2](STEPGEN).maxvel      0
+setp pid.2.Pgain [AXIS_2]P
+setp pid.2.Igain [AXIS_2]I
+setp pid.2.Dgain [AXIS_2]D
+setp pid.2.FF1 [AXIS_2]FF1
+setp pid.2.FF2 [AXIS_2]FF2
+setp pid.2.deadband [AXIS_2]DEADBAND
+setp idb.2.amount [AXIS_2]IDEADBAND
+
+setp hm2_5i20.0.encoder.[AXIS_0](INSTANCE).scale [AXIS_0]INPUT_SCALE
+setp hm2_5i20.0.encoder.[AXIS_1](INSTANCE).scale [AXIS_1]INPUT_SCALE
+setp hm2_5i20.0.encoder.[AXIS_2](INSTANCE).scale [AXIS_2]INPUT_SCALE
 
 addf hm2_5i20.0.read servo-thread
 addf debounce.0 servo-thread
 addf motion-command-handler servo-thread
 addf motion-controller servo-thread
+addf pid.0.do-pid-calcs servo-thread
+addf pid.1.do-pid-calcs servo-thread
+addf pid.2.do-pid-calcs servo-thread
+addf idb.0 servo-thread
+addf idb.1 servo-thread
+addf idb.2 servo-thread
 addf hm2_5i20.0.write servo-thread
 addf hm2_5i20.0.pet_watchdog servo-thread
 
@@ -83,20 +85,20 @@ addf ddt.5 servo-thread
 net tool-prep-loop iocontrol.0.tool-prepare => iocontrol.0.tool-prepared
 net estop-loop iocontrol.0.user-enable-out iocontrol.0.emc-enable-in
 
-net spindle motion.spindle-on => hm2_5i20.0.gpio.071.out
-setp hm2_5i20.0.gpio.071.is_output 1
+#net spindle motion.spindle-on => hm2_5i20.0.gpio.071.out
+#setp hm2_5i20.0.gpio.071.is_output 1
 
-net tls-raw <= hm2_5i20.0.gpio.070.in => debounce.0.0.in
-net tls-filtered debounce.0.0.out => motion.probe-input
+#net tls-raw <= hm2_5i20.0.gpio.070.in => debounce.0.0.in
+#net tls-filtered debounce.0.0.out => motion.probe-input
 
-net xhome-raw <= hm2_5i20.0.gpio.069.in => debounce.0.1.in
-net xhome-filtered debounce.0.1.out => axis.0.home-sw-in
+#net xhome-raw <= hm2_5i20.0.gpio.069.in => debounce.0.1.in
+#net xhome-filtered debounce.0.1.out => axis.0.home-sw-in
 
-net yhome-raw <= hm2_5i20.0.gpio.068.in => debounce.0.2.in
-net yhome-filtered debounce.0.2.out => axis.1.home-sw-in
+#net yhome-raw <= hm2_5i20.0.gpio.068.in => debounce.0.2.in
+#net yhome-filtered debounce.0.2.out => axis.1.home-sw-in
 
-net zhome-raw <= hm2_5i20.0.gpio.067.in => debounce.0.3.in
-net zhome-filtered debounce.0.3.out => axis.2.home-sw-in
+#net zhome-raw <= hm2_5i20.0.gpio.067.in => debounce.0.3.in
+#net zhome-filtered debounce.0.3.out => axis.2.home-sw-in
 
 loadusr -W hal_manualtoolchange
 

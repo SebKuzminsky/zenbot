@@ -1,0 +1,34 @@
+loadrt hostmot2
+loadrt hm2_pci config="firmware=hm2/5i20/SV12.BIT num_encoders=12 num_pwmgens=12 num_stepgens=0"
+loadrt threads
+
+loadrt at_pid num_chan=1
+loadrt idb count=1
+
+setp idb.0.amount .1
+setp pid.0.deadband .0001
+
+setp hm2_5i20.0.encoder.08.scale 74666.6666666666
+setp hm2_5i20.0.pwmgen.08.scale -.36
+addf hm2_5i20.0.read thread1
+addf pid.0.do-pid-calcs thread1
+addf idb.0 thread1
+addf hm2_5i20.0.write thread1
+addf hm2_5i20.0.pet_watchdog thread1
+
+start
+
+net pos-fb hm2_5i20.0.encoder.08.position => pid.0.feedback
+net pid-cmd pid.0.output => idb.0.in
+net pwm-cmd idb.0.out => hm2_5i20.0.pwmgen.08.value
+net ena => hm2_5i20.0.pwmgen.08.enable pid.0.enable
+net pos-cmd => pid.0.command
+net vel-fb <= hm2_5i20.0.encoder.08.velocity
+
+setp hm2_5i20.0.pwmgen.pwm_frequency 20000
+setp pid.0.deadband .0005
+
+loadusr halmeter sig pos-fb
+loadusr halmeter sig vel-fb
+loadusr halmeter sig pos-cmd
+loadusr halmeter sig pwm-cmd

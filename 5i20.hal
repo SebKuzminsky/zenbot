@@ -4,7 +4,7 @@ loadrt [EMCMOT]EMCMOT base_period_nsec=[EMCMOT]PERIOD servo_period_nsec=[EMCMOT]
 loadrt hostmot2
 loadrt hm2_pci config="firmware=hm2/5i20/SV12.BIT num_encoders=11 num_pwmgens=11 num_stepgens=0"
 
-setp hm2_5i20.0.pwmgen.pwm_frequency 20000
+setp hm2_5i20.0.pwmgen.pwm_frequency 30000
 
 loadrt pid num_chan=3
 loadrt idb count=3
@@ -28,11 +28,9 @@ net Zpwm-cmd idb.2.out => hm2_5i20.0.pwmgen.[AXIS_2](INSTANCE).value
 net Zpwm-ena axis.2.amp-enable-out => hm2_5i20.0.pwmgen.[AXIS_2](INSTANCE).enable pid.2.enable
 
 
-#net Xpos-fb hm2_5i20.0.encoder.[AXIS_0](INSTANCE).position => axis.0.motor-pos-fb pid.0.feedback
+net Xpos-fb hm2_5i20.0.encoder.[AXIS_0](INSTANCE).position => axis.0.motor-pos-fb pid.0.feedback
 net Ypos-fb hm2_5i20.0.encoder.[AXIS_1](INSTANCE).position => axis.1.motor-pos-fb pid.1.feedback
-#net Zpos-fb hm2_5i20.0.encoder.[AXIS_2](INSTANCE).position => axis.2.motor-pos-fb pid.2.feedback
-net Xpos-cmd => axis.0.motor-pos-fb
-net Zpos-cmd => axis.2.motor-pos-fb
+net Zpos-fb hm2_5i20.0.encoder.[AXIS_2](INSTANCE).position => axis.2.motor-pos-fb pid.2.feedback
 
 setp pid.0.Pgain [AXIS_0]P
 setp pid.0.Igain [AXIS_0]I
@@ -58,6 +56,16 @@ setp pid.2.FF2 [AXIS_2]FF2
 setp pid.2.deadband [AXIS_2]DEADBAND
 setp idb.2.amount [AXIS_2]IDEADBAND
 
+setp hm2_5i20.0.pwmgen.[AXIS_0](INSTANCE).scale [AXIS_0]OUTPUT_SCALE
+setp hm2_5i20.0.pwmgen.[AXIS_1](INSTANCE).scale [AXIS_1]OUTPUT_SCALE
+setp hm2_5i20.0.pwmgen.[AXIS_2](INSTANCE).scale [AXIS_2]OUTPUT_SCALE
+setp hm2_5i20.0.pwmgen.[AXIS_0](INSTANCE).scale [AXIS_0]OUTPUT_SCALE
+setp hm2_5i20.0.pwmgen.[AXIS_1](INSTANCE).scale [AXIS_1]OUTPUT_SCALE
+setp hm2_5i20.0.pwmgen.[AXIS_2](INSTANCE).scale [AXIS_2]OUTPUT_SCALE
+
+setp hm2_5i20.0.encoder.[AXIS_0](INSTANCE).scale [AXIS_0]INPUT_SCALE
+setp hm2_5i20.0.encoder.[AXIS_1](INSTANCE).scale [AXIS_1]INPUT_SCALE
+setp hm2_5i20.0.encoder.[AXIS_2](INSTANCE).scale [AXIS_2]INPUT_SCALE
 setp hm2_5i20.0.encoder.[AXIS_0](INSTANCE).scale [AXIS_0]INPUT_SCALE
 setp hm2_5i20.0.encoder.[AXIS_1](INSTANCE).scale [AXIS_1]INPUT_SCALE
 setp hm2_5i20.0.encoder.[AXIS_2](INSTANCE).scale [AXIS_2]INPUT_SCALE

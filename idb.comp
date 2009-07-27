@@ -1,0 +1,13 @@
+component idb "Inverse Deadband";
+pin in float in "Input";
+pin out float out "Output";
+param rw float amount;
+function _ ;
+license "GPL";
+;;
+FUNCTION(_)
+{
+if (in==0.0) out=in;
+else if (in<0.0) out=in-amount;
+else if (in>0.0) out=in+amount;
+}

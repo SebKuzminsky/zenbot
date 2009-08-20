@@ -8,7 +8,7 @@ setp hm2_5i20.0.pwmgen.pwm_frequency 30000
 
 loadrt pid num_chan=3
 loadrt idb count=3
-loadrt debounce cfg=4
+loadrt debounce cfg=2
 loadrt ddt count=6
 
 show pin hm2_5i20.0.encoder.01
@@ -96,17 +96,12 @@ net estop-loop iocontrol.0.user-enable-out iocontrol.0.emc-enable-in
 #net spindle motion.spindle-on => hm2_5i20.0.gpio.071.out
 #setp hm2_5i20.0.gpio.071.is_output 1
 
-#net tls-raw <= hm2_5i20.0.gpio.070.in => debounce.0.0.in
-#net tls-filtered debounce.0.0.out => motion.probe-input
+show pin  hm2_5i20.0.gpio.004*
+net xyhome-raw <= hm2_5i20.0.gpio.004.in_not => debounce.0.0.in
+net xyhome-filtered debounce.0.0.out => axis.0.home-sw-in axis.1.home-sw-in
 
-#net xhome-raw <= hm2_5i20.0.gpio.069.in => debounce.0.1.in
-#net xhome-filtered debounce.0.1.out => axis.0.home-sw-in
-
-#net yhome-raw <= hm2_5i20.0.gpio.068.in => debounce.0.2.in
-#net yhome-filtered debounce.0.2.out => axis.1.home-sw-in
-
-#net zhome-raw <= hm2_5i20.0.gpio.067.in => debounce.0.3.in
-#net zhome-filtered debounce.0.3.out => axis.2.home-sw-in
+net zhome-raw <= hm2_5i20.0.gpio.017.in_not => debounce.0.1.in
+net zhome-filtered debounce.0.1.out => axis.2.home-sw-in
 
 loadusr -W hal_manualtoolchange
 

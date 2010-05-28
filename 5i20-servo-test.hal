@@ -1,5 +1,5 @@
 loadrt hostmot2
-loadrt hm2_pci config="firmware=hm2/5i20/SV12.BIT num_encoders=12 num_pwmgens=12 num_stepgens=0"
+loadrt hm2_pci config="firmware=hm2/5i20/SVST8_3P.BIT num_encoders=5 num_pwmgens=5 num_stepgens=0"
 loadrt threads
 
 loadrt at_pid num_chan=1

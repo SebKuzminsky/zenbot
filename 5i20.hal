@@ -2,7 +2,9 @@ loadrt trivkins
 loadrt [EMCMOT]EMCMOT base_period_nsec=[EMCMOT]PERIOD servo_period_nsec=[EMCMOT]PERIOD traj_period_nsec=[EMCMOT]PERIOD key=[EMCMOT]SHMEM_KEY num_joints=[TRAJ]AXES
 
 loadrt hostmot2
-loadrt hm2_pci config="firmware=hm2/5i20/SV12.BIT num_encoders=11 num_pwmgens=11 num_stepgens=0"
+loadrt hm2_pci config="firmware=hm2/5i20/SVST8_3Px.BIT num_encoders=3 num_pwmgens=3 num_stepgens=0"
+
+show pin hm2_5i20
 
 setp hm2_5i20.0.pwmgen.pwm_frequency 30000
 

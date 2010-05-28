@@ -1,0 +1,8 @@
+G0X0Y0Z0
+O1 while [#1 LT 1000]
+G2J.25F240
+G4P1
+(AXIS,stop)
+#1=[#1+1]
+O1 endwhile
+M2

@@ -1,0 +1,35 @@
+loadrt hostmot2
+loadrt hm2_pci config="firmware=hm2/5i20/SVST8_4.BIT num_encoders=0 num_pwmgens=0 num_stepgens=0"
+loadrt stepgen ctrl_type=v step_type=0
+loadrt threads name1=slow period1=100000
+
+addf hm2_5i20.0.read slow
+addf hm2_5i20.0.write slow
+addf stepgen.capture-position slow
+addf stepgen.make-pulses slow
+addf stepgen.update-freq slow
+addf hm2_5i20.0.pet_watchdog slow
+
+#71 49 50 51 52 53
+#54 55 56 57 58 59
+#60 60 61 63 64 65
+#^^ ^^
+#66 67 68 69 70 71
+
+net step stepgen.0.step => hm2_5i20.0.gpio.060.out hm2_5i20.0.gpio.071.out
+net dir  stepgen.0.dir  => hm2_5i20.0.gpio.061.out
+setp hm2_5i20.0.gpio.071.is_output 1
+setp hm2_5i20.0.gpio.060.is_output 1
+setp hm2_5i20.0.gpio.061.is_output 1
+setp hm2_5i20.0.gpio.071.is_opendrain 1
+setp hm2_5i20.0.gpio.060.is_opendrain 1
+setp hm2_5i20.0.gpio.061.is_opendrain 1
+
+setp stepgen.0.enable 1
+setp stepgen.0.position-scale 25600
+setp stepgen.0.maxvel 1.5
+setp stepgen.0.maxaccel 28
+
+setp stepgen.0.velocity-cmd .1
+
+start

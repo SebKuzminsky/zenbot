@@ -1,0 +1,12 @@
+loadrt hostmot2
+loadrt hm2_pci config="firmware=hm2/5i20/zenbot.bit num_encoders=5 num_pwmgens=5 num_stepgens=3 enable_raw"
+loadrt sim_encoder num_chan=1
+loadrt threads
+
+addf hm2_5i20.0.read thread1
+addf hm2_5i20.0.write thread1
+addf hm2_5i20.0.pet_watchdog thread1
+
+setp hm2_5i20.0.gpio.070.is_output 1
+
+start

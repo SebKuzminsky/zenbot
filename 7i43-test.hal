@@ -1,0 +1,9 @@
+loadrt hostmot2
+loadrt hm2_7i43 config="firmware=hm2/7i43-4/SV8.BIT"
+loadrt threads
+
+addf hm2_7i43.0.read thread1
+addf hm2_7i43.0.write thread1
+addf hm2_7i43.0.pet_watchdog thread1
+
+start

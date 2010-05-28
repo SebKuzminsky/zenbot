@@ -12,11 +12,11 @@ G54 G80 G90 G94
 (safety height)     #6=0.020
 (toolchange height) #7=1.250
 
-(roughing feed)     #11=150
-(outline feed)      #12=200
-(drill feed)        #13=80
-(dimension feed)    #14=80
-(mill-drill feed)   #15=40
+(roughing feed)     #11=15
+(outline feed)      #12=20
+(drill feed)        #13=8
+(dimension feed)    #14=8
+(mill-drill feed)   #15=4
 (End Settings)
 #30=1
 S1000 M3

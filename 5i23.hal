@@ -1,0 +1,118 @@
+loadrt trivkins
+loadrt [EMCMOT]EMCMOT base_period_nsec=[EMCMOT]PERIOD servo_period_nsec=[EMCMOT]PERIOD traj_period_nsec=[EMCMOT]PERIOD key=[EMCMOT]SHMEM_KEY num_joints=[TRAJ]AXES
+
+loadrt hostmot2
+loadrt hm2_pci config="firmware=hm2/5i23/SVST8_4.BIT num_encoders=3 num_pwmgens=3 num_stepgens=0"
+
+show pin hm2_5i23
+
+setp hm2_5i23.0.pwmgen.pwm_frequency 30000
+
+loadrt pid num_chan=3
+loadrt idb count=3
+loadrt debounce cfg=2
+loadrt ddt count=6
+
+show pin hm2_5i23.0.encoder.01
+net Xpos-cmd axis.0.motor-pos-cmd => pid.0.command
+net Xpid-cmd pid.0.output => idb.0.in
+net Xpwm-cmd idb.0.out => hm2_5i23.0.pwmgen.[AXIS_0](INSTANCE).value
+net Xpwm-ena axis.0.amp-enable-out => hm2_5i23.0.pwmgen.[AXIS_0](INSTANCE).enable pid.0.enable
+
+net Ypos-cmd axis.1.motor-pos-cmd => pid.1.command
+net Ypid-cmd pid.1.output => idb.1.in
+net Ypwm-cmd idb.1.out => hm2_5i23.0.pwmgen.[AXIS_1](INSTANCE).value
+net Ypwm-ena axis.1.amp-enable-out => hm2_5i23.0.pwmgen.[AXIS_1](INSTANCE).enable pid.1.enable
+
+net Zpos-cmd axis.2.motor-pos-cmd => pid.2.command
+net Zpid-cmd pid.2.output => idb.2.in
+net Zpwm-cmd idb.2.out => hm2_5i23.0.pwmgen.[AXIS_2](INSTANCE).value
+net Zpwm-ena axis.2.amp-enable-out => hm2_5i23.0.pwmgen.[AXIS_2](INSTANCE).enable pid.2.enable
+
+
+net Xpos-fb hm2_5i23.0.encoder.[AXIS_0](INSTANCE).position => axis.0.motor-pos-fb pid.0.feedback
+net Ypos-fb hm2_5i23.0.encoder.[AXIS_1](INSTANCE).position => axis.1.motor-pos-fb pid.1.feedback
+net Zpos-fb hm2_5i23.0.encoder.[AXIS_2](INSTANCE).position => axis.2.motor-pos-fb pid.2.feedback
+
+setp pid.0.Pgain [AXIS_0]P
+setp pid.0.Igain [AXIS_0]I
+setp pid.0.Dgain [AXIS_0]D
+setp pid.0.FF1 [AXIS_0]FF1
+setp pid.0.FF2 [AXIS_0]FF2
+setp pid.0.deadband [AXIS_0]DEADBAND
+setp idb.0.amount [AXIS_0]IDEADBAND
+
+setp pid.1.Pgain [AXIS_1]P
+setp pid.1.Igain [AXIS_1]I
+setp pid.1.Dgain [AXIS_1]D
+setp pid.1.FF1 [AXIS_1]FF1
+setp pid.1.FF2 [AXIS_1]FF2
+setp pid.1.deadband [AXIS_1]DEADBAND
+setp idb.1.amount [AXIS_1]IDEADBAND
+
+setp pid.2.Pgain [AXIS_2]P
+setp pid.2.Igain [AXIS_2]I
+setp pid.2.Dgain [AXIS_2]D
+setp pid.2.FF1 [AXIS_2]FF1
+setp pid.2.FF2 [AXIS_2]FF2
+setp pid.2.deadband [AXIS_2]DEADBAND
+setp idb.2.amount [AXIS_2]IDEADBAND
+
+setp hm2_5i23.0.pwmgen.[AXIS_0](INSTANCE).scale [AXIS_0]OUTPUT_SCALE
+setp hm2_5i23.0.pwmgen.[AXIS_1](INSTANCE).scale [AXIS_1]OUTPUT_SCALE
+setp hm2_5i23.0.pwmgen.[AXIS_2](INSTANCE).scale [AXIS_2]OUTPUT_SCALE
+
+setp hm2_5i23.0.encoder.[AXIS_0](INSTANCE).scale [AXIS_0]INPUT_SCALE
+setp hm2_5i23.0.encoder.[AXIS_1](INSTANCE).scale [AXIS_1]INPUT_SCALE
+setp hm2_5i23.0.encoder.[AXIS_2](INSTANCE).scale [AXIS_2]INPUT_SCALE
+
+addf hm2_5i23.0.read servo-thread
+addf debounce.0 servo-thread
+addf motion-command-handler servo-thread
+addf motion-controller servo-thread
+addf pid.0.do-pid-calcs servo-thread
+addf pid.1.do-pid-calcs servo-thread
+addf pid.2.do-pid-calcs servo-thread
+addf idb.0 servo-thread
+addf idb.1 servo-thread
+addf idb.2 servo-thread
+addf hm2_5i23.0.write servo-thread
+
+addf ddt.0 servo-thread
+addf ddt.1 servo-thread
+addf ddt.2 servo-thread
+addf ddt.3 servo-thread
+addf ddt.4 servo-thread
+addf ddt.5 servo-thread
+
+net tool-prep-loop iocontrol.0.tool-prepare => iocontrol.0.tool-prepared
+net estop-loop iocontrol.0.user-enable-out iocontrol.0.emc-enable-in
+
+#net spindle motion.spindle-on => hm2_5i20.0.gpio.071.out
+#setp hm2_5i20.0.gpio.071.is_output 1
+
+show pin  hm2_5i23.0.gpio.004*
+net xyhome-raw <= hm2_5i23.0.gpio.004.in_not => debounce.0.0.in
+net xyhome-filtered debounce.0.0.out => axis.0.home-sw-in axis.1.home-sw-in
+
+net zhome-raw <= hm2_5i23.0.gpio.017.in_not => debounce.0.1.in
+net zhome-filtered debounce.0.1.out => axis.2.home-sw-in
+
+loadusr -W hal_manualtoolchange
+
+net tool-change hal_manualtoolchange.change iocontrol.0.tool-change 
+net tool-changed hal_manualtoolchange.changed iocontrol.0.tool-changed
+net tool-prep-number hal_manualtoolchange.number iocontrol.0.tool-prep-number
+
+net Xpos-cmd => ddt.0.in
+net Xvel ddt.0.out => ddt.1.in
+net Xacc <= ddt.1.out
+
+net Ypos-cmd => ddt.2.in
+net Yvel ddt.2.out => ddt.3.in
+net Yacc <= ddt.3.out
+
+net Zpos-cmd => ddt.4.in
+net Zvel ddt.4.out => ddt.5.in
+net Zacc <= ddt.5.out
+

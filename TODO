@@ -4,4 +4,6 @@ Clean up the wiring
 
 mount 7i30 in power supply box
 
+wire PS fan to PS
+
 SSR for spindle

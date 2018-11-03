@@ -1,3 +1,7 @@
-This configuration is for the Zenbot CNC Mini Router (2007 version) with
-Xylotex driver board in 1/8 step mode, using the pluto-p board for step
-generation.
+This configuration is for the Zenbot CNC Mini Router (2007 version)
+with 7i30 driver board, using the Mesa 5i23 for pwm generation &
+quadrature counting.
+
+Each axis/joint is run by a servo controlled by a 7i30.  All the servos
+have no index channel, instead the index channel is used for home/limit
+switches, plus the tool length offset switch.

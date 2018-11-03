@@ -61,13 +61,7 @@ setp idb.2.amount [AXIS_2]IDEADBAND
 setp hm2_5i20.0.pwmgen.[AXIS_0](INSTANCE).scale [AXIS_0]OUTPUT_SCALE
 setp hm2_5i20.0.pwmgen.[AXIS_1](INSTANCE).scale [AXIS_1]OUTPUT_SCALE
 setp hm2_5i20.0.pwmgen.[AXIS_2](INSTANCE).scale [AXIS_2]OUTPUT_SCALE
-setp hm2_5i20.0.pwmgen.[AXIS_0](INSTANCE).scale [AXIS_0]OUTPUT_SCALE
-setp hm2_5i20.0.pwmgen.[AXIS_1](INSTANCE).scale [AXIS_1]OUTPUT_SCALE
-setp hm2_5i20.0.pwmgen.[AXIS_2](INSTANCE).scale [AXIS_2]OUTPUT_SCALE
 
-setp hm2_5i20.0.encoder.[AXIS_0](INSTANCE).scale [AXIS_0]INPUT_SCALE
-setp hm2_5i20.0.encoder.[AXIS_1](INSTANCE).scale [AXIS_1]INPUT_SCALE
-setp hm2_5i20.0.encoder.[AXIS_2](INSTANCE).scale [AXIS_2]INPUT_SCALE
 setp hm2_5i20.0.encoder.[AXIS_0](INSTANCE).scale [AXIS_0]INPUT_SCALE
 setp hm2_5i20.0.encoder.[AXIS_1](INSTANCE).scale [AXIS_1]INPUT_SCALE
 setp hm2_5i20.0.encoder.[AXIS_2](INSTANCE).scale [AXIS_2]INPUT_SCALE

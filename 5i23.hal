@@ -16,23 +16,23 @@ loadrt ddt count=6
 show pin hm2_5i23.0.encoder.01
 net Xpos-cmd axis.0.motor-pos-cmd => pid.0.command
 net Xpid-cmd pid.0.output => idb.0.in
-net Xpwm-cmd idb.0.out => hm2_5i23.0.pwmgen.[AXIS_0](INSTANCE).value
-net Xpwm-ena axis.0.amp-enable-out => hm2_5i23.0.pwmgen.[AXIS_0](INSTANCE).enable pid.0.enable
+net Xpwm-cmd idb.0.out => hm2_5i23.0.pwmgen.00.value
+net Xpwm-ena axis.0.amp-enable-out => hm2_5i23.0.pwmgen.00.enable pid.0.enable
 
 net Ypos-cmd axis.1.motor-pos-cmd => pid.1.command
 net Ypid-cmd pid.1.output => idb.1.in
-net Ypwm-cmd idb.1.out => hm2_5i23.0.pwmgen.[AXIS_1](INSTANCE).value
-net Ypwm-ena axis.1.amp-enable-out => hm2_5i23.0.pwmgen.[AXIS_1](INSTANCE).enable pid.1.enable
+net Ypwm-cmd idb.1.out => hm2_5i23.0.pwmgen.01.value
+net Ypwm-ena axis.1.amp-enable-out => hm2_5i23.0.pwmgen.01.enable pid.1.enable
 
 net Zpos-cmd axis.2.motor-pos-cmd => pid.2.command
 net Zpid-cmd pid.2.output => idb.2.in
-net Zpwm-cmd idb.2.out => hm2_5i23.0.pwmgen.[AXIS_2](INSTANCE).value
-net Zpwm-ena axis.2.amp-enable-out => hm2_5i23.0.pwmgen.[AXIS_2](INSTANCE).enable pid.2.enable
+net Zpwm-cmd idb.2.out => hm2_5i23.0.pwmgen.02.value
+net Zpwm-ena axis.2.amp-enable-out => hm2_5i23.0.pwmgen.02.enable pid.2.enable
 
 
-net Xpos-fb hm2_5i23.0.encoder.[AXIS_0](INSTANCE).position => axis.0.motor-pos-fb pid.0.feedback
-net Ypos-fb hm2_5i23.0.encoder.[AXIS_1](INSTANCE).position => axis.1.motor-pos-fb pid.1.feedback
-net Zpos-fb hm2_5i23.0.encoder.[AXIS_2](INSTANCE).position => axis.2.motor-pos-fb pid.2.feedback
+net Xpos-fb hm2_5i23.0.encoder.00.position => axis.0.motor-pos-fb pid.0.feedback
+net Ypos-fb hm2_5i23.0.encoder.01.position => axis.1.motor-pos-fb pid.1.feedback
+net Zpos-fb hm2_5i23.0.encoder.02.position => axis.2.motor-pos-fb pid.2.feedback
 
 setp pid.0.Pgain [AXIS_0]P
 setp pid.0.Igain [AXIS_0]I
@@ -58,13 +58,13 @@ setp pid.2.FF2 [AXIS_2]FF2
 setp pid.2.deadband [AXIS_2]DEADBAND
 setp idb.2.amount [AXIS_2]IDEADBAND
 
-setp hm2_5i23.0.pwmgen.[AXIS_0](INSTANCE).scale [AXIS_0]OUTPUT_SCALE
-setp hm2_5i23.0.pwmgen.[AXIS_1](INSTANCE).scale [AXIS_1]OUTPUT_SCALE
-setp hm2_5i23.0.pwmgen.[AXIS_2](INSTANCE).scale [AXIS_2]OUTPUT_SCALE
+setp hm2_5i23.0.pwmgen.00.scale [AXIS_0]OUTPUT_SCALE
+setp hm2_5i23.0.pwmgen.01.scale [AXIS_1]OUTPUT_SCALE
+setp hm2_5i23.0.pwmgen.02.scale [AXIS_2]OUTPUT_SCALE
 
-setp hm2_5i23.0.encoder.[AXIS_0](INSTANCE).scale [AXIS_0]INPUT_SCALE
-setp hm2_5i23.0.encoder.[AXIS_1](INSTANCE).scale [AXIS_1]INPUT_SCALE
-setp hm2_5i23.0.encoder.[AXIS_2](INSTANCE).scale [AXIS_2]INPUT_SCALE
+setp hm2_5i23.0.encoder.00.scale [AXIS_0]INPUT_SCALE
+setp hm2_5i23.0.encoder.01.scale [AXIS_1]INPUT_SCALE
+setp hm2_5i23.0.encoder.02.scale [AXIS_2]INPUT_SCALE
 
 addf hm2_5i23.0.read servo-thread
 addf debounce.0 servo-thread

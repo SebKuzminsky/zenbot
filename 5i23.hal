@@ -91,8 +91,11 @@ net estop-loop iocontrol.0.user-enable-out iocontrol.0.emc-enable-in
 #net spindle motion.spindle-on => hm2_5i20.0.gpio.071.out
 #setp hm2_5i20.0.gpio.071.is_output 1
 
-show pin  hm2_5i23.0.gpio.004*
-net xyhome-raw <= hm2_5i23.0.gpio.004.in_not => debounce.0.0.in
+# tool length switch is on gpio 004
+
+# xy shared home
+show pin  hm2_5i23.0.gpio.005*
+net xyhome-raw <= hm2_5i23.0.gpio.005.in_not => debounce.0.0.in
 net xyhome-filtered debounce.0.0.out => axis.0.home-sw-in axis.1.home-sw-in
 
 net zhome-raw <= hm2_5i23.0.gpio.017.in_not => debounce.0.1.in

@@ -5,3 +5,15 @@ quadrature counting.
 Each axis/joint is run by a servo controlled by a 7i30.  All the servos
 have no index channel, instead the index channel is used for home/limit
 switches, plus the tool length offset switch.
+
+
+# Spindle
+
+The spindle is a TB-350S from Wolfgang Engineering (Richard?).
+
+Rated for 0.0001 runout expected, 0.0004 runout max.
+
+20,000 or 25,000 RPM, it's unclear.
+
+Chris Radek has one, and has worked out how to replace the spindle
+bearings.

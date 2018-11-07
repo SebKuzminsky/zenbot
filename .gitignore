@@ -5,3 +5,4 @@ stepper.var
 .*.sw?
 *.bak
 *~
+position.txt

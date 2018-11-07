@@ -11,3 +11,10 @@ SSR for spindle
 mount SSR in PS box
 
 5/32 T-handle hex wrench for spindle
+
+carriage on gantry is missing screws on bottom?
+
+[TRAJ]MAX_ACCELERATION doesn't work?  [AXIS_*]MAX_ACCELERATION controls
+machine accel?
+
+[TRAJ]MAX_VELOCITY doesn't work?  [DISPLAY]MAX_VELOCITY controls max vel?

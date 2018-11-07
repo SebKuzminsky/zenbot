@@ -8,7 +8,13 @@ wire PS fan to PS
 
 SSR for spindle
 
-mount SSR in PS box
+    mount SSR in PS box
+
+    current-limiting resistor on SSR input?
+
+    motor inrush current limiting?
+
+    12A fuse on SSR output?
 
 5/32 T-handle hex wrench for spindle
 

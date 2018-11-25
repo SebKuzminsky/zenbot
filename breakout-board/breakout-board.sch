@@ -588,4 +588,15 @@ Wire Wire Line
 Wire Wire Line
 	3650 6250 3750 6250
 Connection ~ 3750 6250
+$Comp
+L R R?
+U 1 1 5BF9D09A
+P 2850 7350
+F 0 "R?" V 2930 7350 50  0000 C CNN
+F 1 "R" V 2850 7350 50  0000 C CNN
+F 2 "" V 2780 7350 50  0000 C CNN
+F 3 "" H 2850 7350 50  0000 C CNN
+	1    2850 7350
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC

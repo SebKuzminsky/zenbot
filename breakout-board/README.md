@@ -5,7 +5,7 @@ It connects to a standard 50-pin ribbon cable from the Mesa FPGA board.
 It passes the servo pins for channels 0, 1, and 2 to a second 50-pin
 connector, for connecting to the 7i30 and driving the X, Y, and Z servos.
 
-The remaining FPGA connector pins connect to screw terminals, for
+The remaining FPGA connector pins are routed to screw terminals, for
 additional IO (eg the control line for an SSR to power the spindle).
 
 The servo control pins are:

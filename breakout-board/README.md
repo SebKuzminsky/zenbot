@@ -18,4 +18,4 @@ The GPIO pins are:
 
 The male 50-pin connectors are TE Part #1-5499923-0
 
-The screw terminals are Phoenix Contact Part #1725711
+The screw terminals are Phoenix Contact Part #1725711, "MPT 0,5/ 8-2,54"

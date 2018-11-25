@@ -1,35 +1,6 @@
-EESchema Schematic File Version 2
-LIBS:power
-LIBS:device
-LIBS:transistors
-LIBS:conn
-LIBS:linear
-LIBS:regul
-LIBS:74xx
-LIBS:cmos4000
-LIBS:adc-dac
-LIBS:memory
-LIBS:xilinx
-LIBS:microcontrollers
-LIBS:dsp
-LIBS:microchip
-LIBS:analog_switches
-LIBS:motorola
-LIBS:texas
-LIBS:intel
-LIBS:audio
-LIBS:interface
-LIBS:digital-audio
-LIBS:philips
-LIBS:display
-LIBS:cypress
-LIBS:siliconi
-LIBS:opto
-LIBS:atmel
-LIBS:contrib
-LIBS:valves
+EESchema Schematic File Version 4
 LIBS:breakout-board-cache
-EELAYER 25 0
+EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
@@ -44,23 +15,23 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L CONN_02X25 P0
+L breakout-board-rescue:CONN_02X25 P0
 U 1 1 5BF5B245
 P 3450 3600
 F 0 "P0" H 3450 4900 50  0000 C CNN
 F 1 "CONN_02X25" V 3450 3600 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_2x25" H 3450 2850 50  0001 C CNN
+F 2 "" H 3450 2850 50  0001 C CNN
 F 3 "" H 3450 2850 50  0000 C CNN
 	1    3450 3600
 	1    0    0    -1  
 $EndComp
 $Comp
-L CONN_02X25 P1
+L breakout-board-rescue:CONN_02X25 P1
 U 1 1 5BF5B2D8
 P 7000 3600
 F 0 "P1" H 7000 4900 50  0000 C CNN
 F 1 "CONN_02X25" V 7000 3600 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_2x25" H 7000 2850 50  0001 C CNN
+F 2 "" H 7000 2850 50  0001 C CNN
 F 3 "" H 7000 2850 50  0000 C CNN
 	1    7000 3600
 	1    0    0    -1  
@@ -206,7 +177,7 @@ Wire Wire Line
 Wire Wire Line
 	3700 4800 3750 4800
 Wire Wire Line
-	3750 4800 3750 6750
+	3750 4800 3750 5000
 Wire Wire Line
 	3750 5000 7300 5000
 Wire Wire Line
@@ -284,7 +255,7 @@ Wire Wire Line
 Wire Wire Line
 	2050 4700 3200 4700
 Wire Wire Line
-	2000 4800 3200 4800
+	2000 4800 2850 4800
 Wire Wire Line
 	2000 4800 2000 1000
 Wire Wire Line
@@ -504,12 +475,12 @@ Wire Wire Line
 Wire Wire Line
 	4950 2400 3700 2400
 $Comp
-L Screw_Terminal_1x08 J1
+L breakout-board-rescue:Screw_Terminal_1x08 J1
 U 1 1 5BF5D504
 P 2150 6050
 F 0 "J1" H 2150 6900 50  0000 C TNN
 F 1 "Screw_Terminal_1x08" V 2000 6050 50  0000 C TNN
-F 2 "Connectors_Phoenix:PhoenixContact_MC-G_08x3.50mm_Angled" H 2150 5225 50  0001 C CNN
+F 2 "TerminalBlock_Phoenix:TerminalBlock_Phoenix_MPT-0,5-8-2.54_1x08_P2.54mm_Horizontal" H 2150 5225 50  0001 C CNN
 F 3 "" H 2125 6650 50  0001 C CNN
 	1    2150 6050
 	1    0    0    -1  
@@ -551,35 +522,11 @@ Wire Wire Line
 Wire Wire Line
 	2800 6350 2350 6350
 Wire Wire Line
-	2850 4800 2850 6550
-Wire Wire Line
 	2850 6550 2350 6550
 Connection ~ 2850 4800
 Wire Wire Line
 	3750 6750 2350 6750
 Connection ~ 3750 5000
-$Comp
-L R R1
-U 1 1 5BF5DFC5
-P 3100 6250
-F 0 "R1" V 3180 6250 50  0000 C CNN
-F 1 "4.7k" V 3100 6250 50  0000 C CNN
-F 2 "Resistors_SMD:R_2816_HandSoldering" V 3030 6250 50  0001 C CNN
-F 3 "" H 3100 6250 50  0000 C CNN
-	1    3100 6250
-	0    1    1    0   
-$EndComp
-$Comp
-L LED D1
-U 1 1 5BF5E08A
-P 3500 6250
-F 0 "D1" H 3500 6350 50  0000 C CNN
-F 1 "LED" H 3500 6150 50  0000 C CNN
-F 2 "LEDs:LED-5MM" H 3500 6250 50  0001 C CNN
-F 3 "" H 3500 6250 50  0000 C CNN
-	1    3500 6250
-	-1   0    0    1   
-$EndComp
 Wire Wire Line
 	2950 6250 2850 6250
 Connection ~ 2850 6250
@@ -588,15 +535,36 @@ Wire Wire Line
 Wire Wire Line
 	3650 6250 3750 6250
 Connection ~ 3750 6250
+Wire Wire Line
+	2850 4800 3200 4800
+Wire Wire Line
+	3750 5000 3750 6250
+Wire Wire Line
+	2850 6250 2850 6550
+Wire Wire Line
+	3750 6250 3750 6750
 $Comp
-L R R?
-U 1 1 5BF9D09A
-P 2850 7350
-F 0 "R?" V 2930 7350 50  0000 C CNN
-F 1 "R" V 2850 7350 50  0000 C CNN
-F 2 "" V 2780 7350 50  0000 C CNN
-F 3 "" H 2850 7350 50  0000 C CNN
-	1    2850 7350
-	1    0    0    -1  
+L Device:R R1
+U 1 1 5BFC45D2
+P 3100 6250
+F 0 "R1" V 2893 6250 50  0000 C CNN
+F 1 "4.7k" V 2984 6250 50  0000 C CNN
+F 2 "Resistor_THT:R_Axial_DIN0411_L9.9mm_D3.6mm_P15.24mm_Horizontal" V 3030 6250 50  0001 C CNN
+F 3 "~" H 3100 6250 50  0001 C CNN
+	1    3100 6250
+	0    1    1    0   
 $EndComp
+$Comp
+L Device:LED D1
+U 1 1 5BFD66D1
+P 3500 6250
+F 0 "D1" H 3492 5995 50  0000 C CNN
+F 1 "LED" H 3492 6086 50  0000 C CNN
+F 2 "LED_THT:LED_D5.0mm" H 3500 6250 50  0001 C CNN
+F 3 "~" H 3500 6250 50  0001 C CNN
+	1    3500 6250
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	2850 4800 2850 6250
 $EndSCHEMATC

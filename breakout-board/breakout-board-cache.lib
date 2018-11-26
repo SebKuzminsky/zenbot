@@ -41,11 +41,11 @@ X ~ 2 0 -150 50 U 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# breakout-board-rescue_CONN_02X25
+# breakout-board-rescue_CONN_02X25-breakout-board-rescue
 #
-DEF breakout-board-rescue_CONN_02X25 P 0 1 Y N 1 F N
+DEF breakout-board-rescue_CONN_02X25-breakout-board-rescue P 0 1 Y N 1 F N
 F0 "P" 0 1300 50 H V C CNN
-F1 "breakout-board-rescue_CONN_02X25" 0 0 50 V V C CNN
+F1 "breakout-board-rescue_CONN_02X25-breakout-board-rescue" 0 0 50 V V C CNN
 F2 "" 0 -750 50 H V C CNN
 F3 "" 0 -750 50 H V C CNN
 $FPLIST
@@ -159,11 +159,11 @@ X P9 9 -250 800 150 R 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# breakout-board-rescue_Screw_Terminal_1x08
+# breakout-board-rescue_Screw_Terminal_1x08-breakout-board-rescue
 #
-DEF breakout-board-rescue_Screw_Terminal_1x08 J 0 30 Y N 1 F N
+DEF breakout-board-rescue_Screw_Terminal_1x08-breakout-board-rescue J 0 30 Y N 1 F N
 F0 "J" 0 850 50 H V C TNN
-F1 "breakout-board-rescue_Screw_Terminal_1x08" -150 0 50 V V C TNN
+F1 "breakout-board-rescue_Screw_Terminal_1x08-breakout-board-rescue" -150 0 50 V V C TNN
 F2 "" 0 -825 50 H I C CNN
 F3 "" -25 600 50 H I C CNN
 $FPLIST

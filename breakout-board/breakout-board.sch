@@ -15,23 +15,23 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L breakout-board-rescue:CONN_02X25 P0
+L breakout-board-rescue:CONN_02X25-breakout-board-rescue P0
 U 1 1 5BF5B245
 P 3450 3600
 F 0 "P0" H 3450 4900 50  0000 C CNN
 F 1 "CONN_02X25" V 3450 3600 50  0000 C CNN
-F 2 "" H 3450 2850 50  0001 C CNN
+F 2 "Connector_Samtec_HLE_THT:Samtec_HLE-150-02-xx-DV-TE_2x25_P2.54mm_Horizontal" H 3450 2850 50  0001 C CNN
 F 3 "" H 3450 2850 50  0000 C CNN
 	1    3450 3600
 	1    0    0    -1  
 $EndComp
 $Comp
-L breakout-board-rescue:CONN_02X25 P1
+L breakout-board-rescue:CONN_02X25-breakout-board-rescue P1
 U 1 1 5BF5B2D8
 P 7000 3600
 F 0 "P1" H 7000 4900 50  0000 C CNN
 F 1 "CONN_02X25" V 7000 3600 50  0000 C CNN
-F 2 "" H 7000 2850 50  0001 C CNN
+F 2 "Connector_Samtec_HLE_THT:Samtec_HLE-150-02-xx-DV-TE_2x25_P2.54mm_Horizontal" H 7000 2850 50  0001 C CNN
 F 3 "" H 7000 2850 50  0000 C CNN
 	1    7000 3600
 	1    0    0    -1  
@@ -475,7 +475,7 @@ Wire Wire Line
 Wire Wire Line
 	4950 2400 3700 2400
 $Comp
-L breakout-board-rescue:Screw_Terminal_1x08 J1
+L breakout-board-rescue:Screw_Terminal_1x08-breakout-board-rescue J1
 U 1 1 5BF5D504
 P 2150 6050
 F 0 "J1" H 2150 6900 50  0000 C TNN

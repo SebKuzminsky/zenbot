@@ -107,7 +107,8 @@ To export to FlatCAM or other board fabrication tools:
 
 
 FIXME: Somehow set the origin so it doesn't travel out of the machine's
-range of motion at the end of each G-code program.
+range of motion at the end of each G-code program.  For now I just
+commented out the final "G0 X0 Y0" move by hand.
 
 
 ### Mirror the bottom copper and the drill locations

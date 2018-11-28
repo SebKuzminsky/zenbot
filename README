@@ -60,8 +60,8 @@ tool and the work.  The shank of a cutter works too.
 Fish-tail chip breaker router bit, 0.0315 diameter.
 
 Speed: 24,000
-Feed: 2.4 ipm, 60 mm/min
-Plunge feed: 1.2 ipm, 30 mm/min
+Feed: 125 mm/min
+Plunge feed: 125 mm/min
 
 
 ## PreciseBits MN208-0100-002F
@@ -69,8 +69,8 @@ Plunge feed: 1.2 ipm, 30 mm/min
 2-flute endmill, 0.010 diameter, 0.015 max depth of cut.
 
 Speed: 24,000
-Feed: 125 mm/min
-Plunge feed: 125 mm/min
+Feed: 2.4 ipm, 60 mm/min
+Plunge feed: 1.2 ipm, 30 mm/min
 
 
 

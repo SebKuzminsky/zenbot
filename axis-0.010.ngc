@@ -1,3 +1,13 @@
+;
+; For cutting with a PreciseBits.com MN208-0100-002F endmill.
+; diameter 0.010
+; DOC 0.015
+; 2 flutes
+; Speed: 24,000
+; Feed: 2.4 ipm, 60 mm/min
+; Plunge feed: 1.2 ipm?  30 mm/min
+;
+
 ( AXIS "splash g-code" Not intended for actual milling )
 ( To run this code anyway you might have to Touch Off the Z axis)
 ( depending on your setup. As if you had some material in your mill... )
@@ -5,10 +15,10 @@
 ( Also press the Toggle Skip Lines with "/" to see that part )
 ( If the program is too big or small for your machine, change the scale below )
 ( LinuxCNC 19/1/2012 2:13:51 PM )
-#<depth>=0.5
-#<scale>=0.5
-#<feed_plunge> = 125.0
-#<feed_cut> = 125.0
+#<depth>=0.25
+#<scale>=0.25
+#<feed_plunge> = 30.0
+#<feed_cut> = 60.0
 G21 G90 G40
 g64 p0.01
 G0 Z3.0

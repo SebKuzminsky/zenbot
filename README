@@ -38,3 +38,27 @@ Chris Radek says:
 
 
 # Z touch off
+
+Bring the tool down close to the work, then raise it 0.001 at a time
+until you can just barely roll a precision ground dowel pin between the
+tool and the work.  The shank of a cutter works too.
+
+
+# Speeds and Feeds
+
+
+## PreciseBits RCC08-0315-026F
+
+Fish-tail chip breaker router bit, 0.0315 diameter.
+
+Speed: 24,000
+Feed: 2.4 ipm, 60 mm/min
+Plunge feed: 1.2 ipm, 30 mm/min
+
+## PreciseBits MN208-0100-002F
+
+2-flute endmill, 0.010 diameter, 0.015 max depth of cut.
+
+Speed: 24,000
+Feed: 125 mm/min
+Plunge feed: 125 mm/min

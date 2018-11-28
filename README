@@ -57,7 +57,7 @@ tool and the work.  The shank of a cutter works too.
 
 ## PreciseBits RCC08-0315-026F
 
-Fish-tail chip breaker router bit, 0.0315 diameter.
+Fish-tail chip breaker router bit, 0.0315 diameter, 0.256 depth of cut.
 
 Speed: 24,000
 Feed: 5 ipm, 125 mm/min
@@ -66,7 +66,7 @@ Plunge feed: 2.5 ipm, 62 mm/min
 
 ## PreciseBits MN208-0100-002F
 
-2-flute endmill, 0.010 diameter, 0.015 max depth of cut.
+2-flute endmill, 0.010 diameter, 0.015 depth of cut.
 
 Speed: 24,000
 Feed: 2.4 ipm, 60 mm/min

@@ -79,4 +79,86 @@ Plunge feed: 1.2 ipm, 30 mm/min
 
 KiCAD -> FlatCAM -> LinuxCNC
 
-http://flatcam.org/discussion#!/usage:mirror-gerber-file-and-the
+
+## KiCAD
+
+Use Mounting Hole footprints for mounting holes.
+
+Draw the board outline on the Edge.Cuts layer.
+
+To export to FlatCAM or other board fabrication tools:
+
+    File -> Plot
+    
+        select the layers, Plot
+
+        "Generate Drill Files...", enable "PTH and NPTH holes in single
+        file", "Generate Drill File"
+
+
+## FlatCAM
+
+
+## Load PCB fabrication files
+
+"Open Gerber" to load the different layers.
+
+"Open Excellon" to load the drill file.
+
+
+FIXME: Somehow set the origin so it doesn't travel out of the machine's
+range of motion at the end of each G-code program.
+
+
+### Mirror the bottom copper and the drill locations
+
+mirror breakout-board-B.Cu.gbr -axis Y -box breakout-board-Edge.Cuts.gbr
+mirror breakout-board.drl -axis Y -box breakout-board-Edge.Cuts.gbr
+
+
+### Generate trace isolation geometry from copper layer
+
+Set too diameter in B.Cu object.
+
+
+### Generate geometry for irregular board outlines aka Edge Cuts
+
+Set too diameter in Edge.Cuts object.
+
+isolate breakout-board-Edge.Cuts.gbr -outname outline-iso
+exteriors outline-iso -outname outline
+delete outline-iso
+
+
+### Mill holes
+
+Set tool diameter in Drill object "Mill Holes", click Generate Geometry.
+
+
+### Generate G-code
+
+For each of the three toolpath objects (trace isolation, drill/mill, and
+board outline), select the object, set CNC Job options, click Generate.
+
+For the isolation job: Use the 0.010 endmill, "Cut Z" should be maybe
+0.008, with a single pass.
+
+For the drill/mill and board outline jobs: Use the 0.031 endmill, "Cut
+Z" should be the thickness of the board + 0.005 or so, call it 0.070,
+with a depth/pass of 0.020?
+
+
+### Save the G-code
+
+In each G-code object:
+
+* Add "G20 G64 P.0005" to "Prepend to G-code".
+
+* Add "M2" to "Append to G-code".
+
+* Click "Export G-Code".
+
+
+# FlatCAM fixes
+
+* Actual helix milling for the holes

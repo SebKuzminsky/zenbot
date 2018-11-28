@@ -7,6 +7,8 @@ have no index channel, instead the index channel is used for home/limit
 switches, plus the tool length offset switch.
 
 
+
+
 # Spindle
 
 The spindle is a TB-350S from Wolfgang Engineering (Richard?).
@@ -17,6 +19,8 @@ Rated for 0.0001 runout expected, 0.0004 runout max.
 
 Chris Radek has one, and has worked out how to replace the spindle
 bearings.
+
+
 
 
 # Work holding
@@ -37,11 +41,15 @@ Chris Radek says:
     https://www.findtape.com/shop/product-images.aspx?pid=646
 
 
+
+
 # Z touch off
 
 Bring the tool down close to the work, then raise it 0.001 at a time
 until you can just barely roll a precision ground dowel pin between the
 tool and the work.  The shank of a cutter works too.
+
+
 
 
 # Speeds and Feeds
@@ -55,6 +63,7 @@ Speed: 24,000
 Feed: 2.4 ipm, 60 mm/min
 Plunge feed: 1.2 ipm, 30 mm/min
 
+
 ## PreciseBits MN208-0100-002F
 
 2-flute endmill, 0.010 diameter, 0.015 max depth of cut.
@@ -62,3 +71,12 @@ Plunge feed: 1.2 ipm, 30 mm/min
 Speed: 24,000
 Feed: 125 mm/min
 Plunge feed: 125 mm/min
+
+
+
+
+# Toolchain
+
+KiCAD -> FlatCAM -> LinuxCNC
+
+http://flatcam.org/discussion#!/usage:mirror-gerber-file-and-the

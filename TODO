@@ -1,5 +1,9 @@
 Get it running!
 
+    tune Y pid
+
+    tune Z pid
+
 Clean up the wiring
 
 mount 7i30 in power supply box

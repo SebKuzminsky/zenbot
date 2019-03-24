@@ -125,12 +125,12 @@ mirror breakout-board.drl -axis Y -box breakout-board-Edge.Cuts.gbr
 
 ### Generate trace isolation geometry from copper layer
 
-Set too diameter in B.Cu object.
+Set tool diameter in B.Cu object.
 
 
 ### Generate geometry for irregular board outlines aka Edge Cuts
 
-Set too diameter in Edge.Cuts object.
+Set tool diameter in Edge.Cuts object.
 
 isolate breakout-board-Edge.Cuts.gbr -outname outline-iso
 exteriors outline-iso -outname outline

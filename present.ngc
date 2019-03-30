@@ -1,0 +1,5 @@
+o<present> sub
+    g20
+    g53 g0 x[6.20/2] y6.80 z0
+o<present> endsub
+m2

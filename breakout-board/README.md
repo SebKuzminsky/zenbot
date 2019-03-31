@@ -19,3 +19,31 @@ The GPIO pins are:
 The male 50-pin connectors are TE Part #1-5499923-0
 
 The screw terminals are Phoenix Contact Part #1725711, "MPT 0,5/ 8-2,54"
+
+
+# Fabrication
+
+1. Mount a piece of single-sided 1 oz copper clad board to the mill.
+   Make sure it's level.
+
+2. Insert a PreciseBits MN208-0100-002F cutter, touch off Z
+
+3. Open the `outline.ngc` gcode file and touch off X and Y at the lower
+   left corner of the work.
+
+4. Safety glasses, hearing protection, and spindle on.
+
+5. Open the `back-copper.ngc` gcode file and run it!
+
+6. Switch to the PreciseBits RCC08-0315-026F cutter, touch off Z.
+
+7. Safety glasses, hearing protection, and spindle on.
+
+8. Run `drill-mill.ngc`.
+
+9. Run `outline.ngc`.
+
+
+# Lessons learned
+
+Cut deeper!  Some of the cuts didn't remove all the copper.

@@ -102,7 +102,7 @@ To export to FlatCAM or other board fabrication tools:
 ## FlatCAM
 
 
-## Load PCB fabrication files
+### Load PCB fabrication files
 
 "Open Gerber" to load the different layers.
 
@@ -145,7 +145,9 @@ For each of the three toolpath objects (trace isolation, drill/mill, and
 board outline), select the object, set CNC Job options, click Generate.
 
 For the isolation job: Use the 0.010 endmill, "Cut Z" should be maybe
-0.008, with a single pass.
+0.008, with a single pass.  (1 oz copper clad board has a 0.0014 inch
+thick copper layer, and it's pretty easy to mount the board with <
+0.003 inch wobble.)
 
 For the drill/mill and board outline jobs: Use the 0.031 endmill, "Cut
 Z" should be the thickness of the board + 0.005 or so, call it 0.070,

@@ -14,7 +14,7 @@ SSR for spindle
 
     mount SSR in PS box
 
-    current-limiting resistor on SSR input?
+    current-limiting resistor on SSR input?  not needed
 
     motor inrush current limiting?
 

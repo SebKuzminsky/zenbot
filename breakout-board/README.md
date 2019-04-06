@@ -47,3 +47,6 @@ The screw terminals are Phoenix Contact Part #1725711, "MPT 0,5/ 8-2,54"
 # Lessons learned
 
 Cut deeper!  Some of the cuts didn't remove all the copper.
+
+The resistor lead holes should be a little larger diameter.  The other
+four components (LED, screw terminal, 50-pin connectors) all fit well.

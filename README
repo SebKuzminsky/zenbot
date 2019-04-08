@@ -91,18 +91,38 @@ KiCAD -> FlatCAM -> LinuxCNC
 
 ## KiCAD
 
+
+### Schematic Capture
+
+Design the circuit, save.
+
+Export netlist in pcbnew format.
+
+
+### PCB Layout
+
+In the schematic editor, click the "Run Pcbnew" tool icon, or
+Tools->Update PCB.
+
 Use Mounting Hole footprints for mounting holes.
 
 Draw the board outline on the Edge.Cuts layer.
 
+Use "Place -> Drill and Place Offset" (or select the "place auxiliary
+axis origin" tool) to set the origin of the project to the lower left
+corner of the board.
+
 To export to FlatCAM or other board fabrication tools:
 
     File -> Plot
-    
-        select the layers, Plot
+
+        enable "Use auxiliary axis as origin"
+
+        select the layers (B.Cu, Edge.Cuts), Plot (makes a `.gbr` gerber
+        file for each layer).
 
         "Generate Drill Files...", enable "PTH and NPTH holes in single
-        file", "Generate Drill File"
+        file", "Generate Drill File" (makes `.drl` file).
 
 
 ## FlatCAM
@@ -113,11 +133,6 @@ To export to FlatCAM or other board fabrication tools:
 "Open Gerber" to load the different layers.
 
 "Open Excellon" to load the drill file.
-
-
-FIXME: Somehow set the origin so it doesn't travel out of the machine's
-range of motion at the end of each G-code program.  For now I just
-commented out the final "G0 X0 Y0" move by hand.
 
 
 ### Mirror the bottom copper and the drill locations

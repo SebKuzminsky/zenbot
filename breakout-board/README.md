@@ -44,9 +44,29 @@ The screw terminals are Phoenix Contact Part #1725711, "MPT 0,5/ 8-2,54"
 9. Run `outline.ngc`.
 
 
-# Lessons learned
+# Prototypes
 
-Cut deeper!  Some of the cuts didn't remove all the copper.
+## Prototype 0: d7a043c1
 
-The resistor lead holes should be a little larger diameter.  The other
-four components (LED, screw terminal, 50-pin connectors) all fit well.
+* Cut deeper!  Some of the cuts didn't remove all the copper.
+
+* The resistor lead holes should be a little larger diameter.  The pins
+  on the other four components (LED, screw terminal, 50-pin connectors)
+  all fit well.
+
+* Would it be useful to to connect the ground pins on the 50-pin
+  connectors to the ground plane?
+
+* The 2x25 connectors extend past the end of the board some.
+
+
+## Prototype 1
+
+### Changes from previous
+
+* Use a resistor with fatter leads.
+
+* Cut 0.010 deep instead of 0.008.
+
+* Resize the board to be more compact, and so the 2x25 connectors fit.
+  I can fit two prototypes on a 4x6 board now.

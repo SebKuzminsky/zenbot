@@ -137,42 +137,64 @@ To export to FlatCAM or other board fabrication tools:
 
 ### Mirror the bottom copper and the drill locations
 
-mirror breakout-board-B.Cu.gbr -axis Y -box breakout-board-Edge.Cuts.gbr
-mirror breakout-board.drl -axis Y -box breakout-board-Edge.Cuts.gbr
+> mirror breakout-board-B.Cu.gbr -axis Y -box breakout-board-Edge.Cuts.gbr
+> mirror breakout-board.drl -axis Y -box breakout-board-Edge.Cuts.gbr
 
 
 ### Generate trace isolation geometry from copper layer
 
-Set tool diameter in B.Cu object.
+In the Project tab, select the B.Cu object.
+
+Switch to the Selected tab.
+
+Set tool diameter to 0.0095" (just below 0.010" which matches the
+"PreciseBits MN208-0100-002F" endmill i'm using).
+
+Click Generate Geometry.
 
 
 ### Generate geometry for irregular board outlines aka Edge Cuts
 
-Set tool diameter in Edge.Cuts object.
+In the Project tab, select the Edge.Cuts object.
 
-isolate breakout-board-Edge.Cuts.gbr -outname outline-iso
-exteriors outline-iso -outname outline
-delete outline-iso
+Switch to the Selected tab.
+
+Set tool diameter to 0.0315" (to match the "PreciseBits RCC08-0315-026F"
+endmill i'm using for this cut).
+
+> isolate breakout-board-Edge.Cuts.gbr -outname outline-iso
+> exteriors outline-iso -outname outline
+> delete outline-iso
+> delete breakout-board-Edge.Cuts.gbr_iso
 
 
 ### Mill holes
 
-Set tool diameter in Drill object "Mill Holes", click Generate Geometry.
+In the Project tab, select the drill object.
+
+Switch to the Selected tab.
+
+Find the Mill Holes section.
+
+Set tool diameter to 0.0315" (to match the "PreciseBits RCC08-0315-026F"
+endmill i'm using for this cut).
+
+Click Generate Geometry.
 
 
 ### Generate G-code
 
 For each of the three toolpath objects (trace isolation, drill/mill, and
-board outline), select the object, set CNC Job options, click Generate.
+board outline), select the object, set Create CNC Job options, click Generate.
 
-For the isolation job: Use the 0.010 endmill, "Cut Z" should be maybe
-0.008, with a single pass.  (1 oz copper clad board has a 0.0014 inch
-thick copper layer, and it's pretty easy to mount the board with <
-0.003 inch wobble.)
+For the isolation job: Use the 0.010 endmill, feed 2.4, "Cut Z" should be
+maybe 0.010, with a single pass.  (1 oz copper clad board has a 0.0014
+inch thick copper layer, and it's pretty easy to mount the board with
+less than 0.003 inch wobble.)
 
-For the drill/mill and board outline jobs: Use the 0.031 endmill, "Cut
-Z" should be the thickness of the board + 0.005 or so, call it 0.070,
-with a depth/pass of 0.020?
+For the drill/mill and board outline jobs: Use the 0.031 endmill, feed
+5.0, "Cut Z" should be the thickness of the board + 0.005 or so, call
+it 0.070, with a depth/pass of 0.020?
 
 
 ### Save the G-code
@@ -182,6 +204,8 @@ In each G-code object:
 * Add "G20 G64 P.0005" to "Prepend to G-code".
 
 * Add "M2" to "Append to G-code".
+
+* Turn off Dwell.
 
 * Click "Export G-Code".
 

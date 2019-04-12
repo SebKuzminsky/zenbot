@@ -79,3 +79,15 @@ but that was my last spare and now the project is stalled again.
 
 I guess the 0.010 axial depth of cut is too much, maybe make the cut in
 two passes of 0.005 or so instead?
+
+
+## Prototype 2
+
+### Design changes
+
+* Increase PCB trace isolation from 0.010" to 0.011", so i can optionally
+  use larger (by 0.001, but still), cheaper endmills.
+
+* Decrease isolation milling depth of cut from 0.010" to 0.006", hopefully
+  i'll break fewer tools.  If it doesn't isolate properly (like it
+  probably won't) i can always touch off Z deeper and rerun the program.

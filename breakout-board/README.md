@@ -62,7 +62,7 @@ The screw terminals are Phoenix Contact Part #1725711, "MPT 0,5/ 8-2,54"
 
 ## Prototype 1
 
-### Changes from previous
+### Design changes from previous prototype
 
 * Use a resistor with fatter leads.
 
@@ -70,3 +70,12 @@ The screw terminals are Phoenix Contact Part #1725711, "MPT 0,5/ 8-2,54"
 
 * Resize the board to be more compact, and so the 2x25 connectors fit.
   I can fit two prototypes on a 4x6 board now.
+
+### Fabrication
+
+Broke two 0.010 endmills while cutting `back-copper.ngc`.  The first time
+I switched in a fresh tool and restarted from just before where it broke,
+but that was my last spare and now the project is stalled again.
+
+I guess the 0.010 axial depth of cut is too much, maybe make the cut in
+two passes of 0.005 or so instead?

@@ -28,3 +28,16 @@ machine accel?
 [TRAJ]MAX_VELOCITY doesn't work?  [DISPLAY]MAX_VELOCITY controls max vel?
 
 add a vacuum port
+
+build a workbench/cabinet for it, with sound dampening
+
+    top shelf
+    
+        left side: screen, keyboard, mouse, ~24" wide
+
+        right side: zenbot, can be enclosed for sound control, ~19" hide
+
+    middle shelf: tools & tooling, copper clad board
+
+    bottom shelf: computer, driver box
+

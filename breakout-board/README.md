@@ -28,8 +28,8 @@ The screw terminals are Phoenix Contact Part #1725711, "MPT 0,5/ 8-2,54"
 
 2. Insert a PreciseBits MN208-0100-002F cutter, touch off Z
 
-3. Open the `outline.ngc` gcode file and touch off X and Y at the lower
-   left corner of the work.
+3. Open the `back-copper.ngc` gcode file and touch off X and Y at the
+   lower left corner of the work.
 
 4. Safety glasses, hearing protection, and spindle on.
 

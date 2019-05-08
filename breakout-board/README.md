@@ -91,3 +91,15 @@ two passes of 0.005 or so instead?
 * Decrease isolation milling depth of cut from 0.010" to 0.006", hopefully
   i'll break fewer tools.  If it doesn't isolate properly (like it
   probably won't) i can always touch off Z deeper and rerun the program.
+
+### Fabrication
+
+First pass ran to completion, didn't break the cutter (yay!), but didn't
+fully isolate the traces (as expected).
+
+Moved Z down 0.005, reran the program.
+
+It finished!  There were a lot of burrs on the edges of the cuts, some
+that caused shorts between the traces or between the traces and the
+untouched copper pour.  I scrubbed it with a scotchbrite pad and that
+fixed it, it's good!

@@ -60,7 +60,7 @@ The screw terminals are Phoenix Contact Part #1725711, "MPT 0,5/ 8-2,54"
 * The 2x25 connectors extend past the end of the board some.
 
 
-## Prototype 1
+## Prototype 1: 2033f8a4
 
 ### Design changes from previous prototype
 
@@ -81,7 +81,7 @@ I guess the 0.010 axial depth of cut is too much, maybe make the cut in
 two passes of 0.005 or so instead?
 
 
-## Prototype 2
+## Prototype 2: a6cbd07e
 
 ### Design changes
 

@@ -179,8 +179,8 @@ To export to FlatCAM or other board fabrication tools:
 
 ### Mirror the bottom copper and the drill locations
 
-`mirror breakout-board-B.Cu.gbr -axis Y -box breakout-board-Edge.Cuts.gbr`
-`mirror breakout-board.drl -axis Y -box breakout-board-Edge.Cuts.gbr`
+* `mirror breakout-board-B.Cu.gbr -axis Y -box breakout-board-Edge.Cuts.gbr`
+* `mirror breakout-board.drl -axis Y -box breakout-board-Edge.Cuts.gbr`
 
 
 ### Generate trace isolation geometry from copper layer
@@ -204,10 +204,10 @@ Switch to the Selected tab.
 Set tool diameter to 0.0315" (to match the "PreciseBits RCC08-0315-026F"
 endmill i'm using for this cut).
 
-`isolate breakout-board-Edge.Cuts.gbr -outname outline-iso`
-`exteriors outline-iso -outname outline`
-`delete outline-iso`
-`delete breakout-board-Edge.Cuts.gbr_iso`
+* `isolate breakout-board-Edge.Cuts.gbr -outname outline-iso`
+* `exteriors outline-iso -outname outline`
+* `delete outline-iso`
+* `delete breakout-board-Edge.Cuts.gbr_iso`
 
 
 ### Mill holes

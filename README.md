@@ -180,9 +180,54 @@ To export to FlatCAM or other board fabrication tools:
 
 ## FlatCAM
 
-At startup, before loading any project Gerber or Excelleon files, switch
-to the "Options" tab, select "APPLICATION DEFAULTS", and set "Units"
-to mm, to match what KiCad puts out.
+At startup, before loading any project Gerber or Excelleon files, set
+up some options.  Switch to the "Options" tab and select "APPLICATION
+DEFAULTS".
+
+Set "Units" to mm, to match what KiCad puts out.
+
+In the "Gerber Options" section:
+
+* Set "Isolation Routing" -> "Tool dia" to 0.010 inch (0.254 mm) which
+  matches the "PreciseBits MN208-0100-002F" endmill i'm using.
+
+* Set "Board cutout" -> "Tool dia" to 0.0315 inch (0.800 mm) which matches
+  the "PreciseBits RCC08-0315-026F" endmill i'm using for this cut.
+
+* Set "Board cutout" -> "Margin" to 0.0 inch (0.000 mm).
+
+* Set "Board cutout" -> "Gap size" to 0.0 inch (0.000 mm), since we're
+  using double-sided tape for work holding no work-holding tabs are
+  needed.  FlatCAM imposes a minimum size so we can't get totally rid
+  of them.
+
+* Set "Board cutout" -> "Gaps" to "2 (L/R)" or whatever feels appropriate
+  to you.  Since we don't want board cutout gaps and there's no "0"
+  option here, you should probably choose one of the 2-gap options.
+
+In the "Excelleon Options" -> "Create CNC Job" section:
+
+* Set "Cut Z" to -1.8 mm.
+
+* Set "Travel Z" to 0.5 mm.
+
+* Set "Feed Rate" to 125 mm/min.
+
+In the "Excelleon Options" -> "Mill Holes" section:
+
+* Set "Tool dia" to 0.794 mm.
+
+In the "CNC Job Options" -> "Export G-Code" section:
+
+* Set "Prepend to G-Code": "G21 G64 P0.01" for mm, or "G20 G64 P0.0005"
+  for inch.
+
+* Set "Append to G-Code": "m2"
+
+* Disable "Dwell".
+
+If you changed any of the application settings you have to quit FlatCAM
+and restart for them to take effect.
 
 
 ### Load PCB fabrication files
@@ -194,34 +239,41 @@ to mm, to match what KiCad puts out.
 
 ### Mirror the bottom copper and the drill locations
 
-* `mirror breakout-board-B.Cu.gbr -axis Y -box breakout-board-Edge.Cuts.gbr`
-* `mirror breakout-board.drl -axis Y -box breakout-board-Edge.Cuts.gbr`
+Select "Tool" -> "Double-Sided PCB Tool".
+
+In "Bottom Layer", select the bottom copper gerber.
+
+Set "Mirror Axis" to "Y".
+
+Set "Axis Location" to "Box".
+
+Set "Point/Box" to the edge cuts gerber.
+
+Click "Mirror Object".
+
+In "Bottom Layer", select the excelleon drill file.
+
+Click "Mirror Object".
 
 
 ### Generate trace isolation geometry from copper layer
 
 In the Project tab, select the B.Cu object.
 
-Switch to the Selected tab.
+Switch to the "Selected" tab.
 
-Set tool diameter to 0.010" (0.254mm) which matches the "PreciseBits
-MN208-0100-002F" endmill i'm using).
-
-Click Generate Geometry.
+Click "Isolation Routing" -> "Generate Geometry".
 
 
 ### Generate geometry for irregular board outlines aka Edge Cuts
 
 In the Project tab, select the Edge.Cuts object.
 
-Switch to the Selected tab.
-
-Set tool diameter to 0.0315" (0.794mm) (to match the "PreciseBits
-RCC08-0315-026F" endmill i'm using for this cut).
+Switch to the "Selected" tab.
 
 #### If you drew the board edge as a graphic polygon
 
-Click "Generate Geometry".
+Click "Board cutout" -> "Generate Geometry".
 
 #### If you drew the board edge as graphic lines & arcs
 
@@ -235,14 +287,14 @@ Click "Generate Geometry".
 
 In the Project tab, select the drill object.
 
-Switch to the Selected tab.
+Switch to the "Selected" tab.
 
-Find the Mill Holes section.
+Find the "Mill Holes" section.
 
-Set tool diameter to 0.0315" (to match the "PreciseBits RCC08-0315-026F"
-endmill i'm using for this cut).
+Set tool diameter to 0.0315 inch (0.800 mm) (to match the "PreciseBits
+RCC08-0315-026F" endmill i'm using for this cut).
 
-Click Generate Geometry.
+Click "Mill Holes" -> "Generate Geometry".
 
 
 ### Generate G-code
@@ -251,32 +303,66 @@ For each of the three toolpath objects (trace isolation, drill/mill,
 and board outline), select the object in the "Project" tab, switch to the
 "Selected" tab, set "Create CNC Job" options, click "Generate".
 
-For the isolation job: Use the 0.010" endmill, feed 2.4 inch/min (60.1
-mm/min), "Cut Z" should be maybe -0.005 inch (-0.127mm), with a single
-pass.  (1 oz copper clad board has a 0.0014 inch (0.036mm) thick copper
-layer, and it's pretty easy to mount the board with less than 0.003 inch
-(0.076mm) wobble.)
+#### Trace Isolation
 
-For the drill/mill and board outline jobs: Use the 0.031 inch (0.794mm)
-endmill, feed 5.0 inch/min (127 mm/min), "Cut Z" should be the thickness
-of the board + 0.005" or so, call it 0.070 inch (1.8mm), with a depth/pass
-of 0.020 inch (0.5mm)?
+* "Cut Z": Maybe -0.005 inch (-0.127 mm).  1 oz copper clad board has
+  a 0.0014 inch (0.036 mm) thick copper layer, and it's pretty easy to
+  mount the board with less than 0.003 inch (0.076 mm) wobble.
+
+* "Travel Z": 0.5 mm
+
+* "Feed Rate": 2.4 inch/min (60.1 mm/min)
+
+* "Tool dia": 0.010 inch (0.254 mm)
+
+* "Spindle speed": 24000 (you can leave this blank for the Zenbot since
+  it doesn't have a speed-controlled spindle.
+
+* "Multi-Depth": disabled
+
+Click "Create CNC Job" -> "Generate", then "Export G-Code".
 
 
-### Save the G-code
+#### Edge Cuts
 
-In each G-code object:
+* "Cut Z": Maybe -0.070 inch (-1.800 mm).  1 oz copper clad board is
+  about 0.065" thick, so this should cut through with a reasonable margin.
 
-* If you're using mm units: Add "G21 G64 P0.01" to "Prepend to G-code".
+* "Travel Z": 0.5 mm
 
-* If you're using inch units: Add "G20 G64 P0.0005" to "Prepend to
-  G-code".
+* "Feed Rate": 5.0 inch/min (127 mm/min)
 
-* Add "M2" to "Append to G-code".
+* "Tool dia": 0.0315 inch (0.800 mm)
 
-* Turn off Dwell.
+* "Spindle speed": 24000 (you can leave this blank for the Zenbot since
+  it doesn't have a speed-controlled spindle.
 
-* Click "Export G-Code".
+* "Multi-Depth": enabled
+
+* "Depth/pass": 0.200 inch (0.5 mm)
+
+Click "Create CNC Job" -> "Generate", then "Export G-Code".
+
+
+#### Drilling
+
+* "Cut Z": Maybe -0.070 inch (-1.800 mm).  1 oz copper clad board is
+  about 0.065" thick, so this should cut through with a reasonable margin.
+
+* "Travel Z": 0.5 mm
+
+* "Feed Rate": 4.0 inch/min (100 mm/min)
+
+* "Tool dia": 0.0315 inch (0.800 mm)
+
+* "Spindle speed": 24000 (you can leave this blank for the Zenbot since
+  it doesn't have a speed-controlled spindle.
+
+* "Multi-Depth": enabled
+
+* "Depth/pass": 0.200 inch (0.5 mm)
+
+Click "Create CNC Job" -> "Generate", then "Export G-Code".
 
 
 # FlatCAM fixes

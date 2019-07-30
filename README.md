@@ -146,9 +146,20 @@ Export netlist in pcbnew format.
 In the schematic editor, click the "Run Pcbnew" tool icon, or
 Tools->Update PCB.
 
+In "Setup -> Design Rules..." set "Clearance" and "Track Width" to
+reasonable numbers for your machine and tooling.  "Clearance" is the
+isolation between traces, should be at least slightly more than the
+diameter of your cutting tool.  "Track Width" is trace width.
+
 Use Mounting Hole footprints for mounting holes.
 
-Draw the board outline on the Edge.Cuts layer.
+Draw the board outline as a "graphic polygon" on the Edge.Cuts layer.
+When we generate gcode for this layer in FlatCAM later, the outside
+of the polygon will be cut but the inside will not.  If you draw the
+board edge as a collection of "graphic line" and "graphic arc" objects
+both inside and outside will be cut, as if the outline were a trace.
+It can be fixed in CAM by deleting the inside gcode, but using "graphic
+polygon" is simpler.
 
 Use "Place -> Drill and Place Offset" (or select the "place auxiliary
 axis origin" tool) to set the origin of the project to the lower left
@@ -168,6 +179,10 @@ To export to FlatCAM or other board fabrication tools:
 
 
 ## FlatCAM
+
+At startup, before loading any project Gerber or Excelleon files, switch
+to the "Options" tab, select "APPLICATION DEFAULTS", and set "Units"
+to mm, to match what KiCad puts out.
 
 
 ### Load PCB fabrication files
@@ -189,8 +204,8 @@ In the Project tab, select the B.Cu object.
 
 Switch to the Selected tab.
 
-Set tool diameter to 0.0095" (just below 0.010" which matches the
-"PreciseBits MN208-0100-002F" endmill i'm using).
+Set tool diameter to 0.010" (0.254mm) which matches the "PreciseBits
+MN208-0100-002F" endmill i'm using).
 
 Click Generate Geometry.
 
@@ -201,8 +216,14 @@ In the Project tab, select the Edge.Cuts object.
 
 Switch to the Selected tab.
 
-Set tool diameter to 0.0315" (to match the "PreciseBits RCC08-0315-026F"
-endmill i'm using for this cut).
+Set tool diameter to 0.0315" (0.794mm) (to match the "PreciseBits
+RCC08-0315-026F" endmill i'm using for this cut).
+
+#### If you drew the board edge as a graphic polygon
+
+Click "Generate Geometry".
+
+#### If you drew the board edge as graphic lines & arcs
 
 * `isolate breakout-board-Edge.Cuts.gbr -outname outline-iso`
 * `exteriors outline-iso -outname outline`
@@ -226,24 +247,30 @@ Click Generate Geometry.
 
 ### Generate G-code
 
-For each of the three toolpath objects (trace isolation, drill/mill, and
-board outline), select the object, set Create CNC Job options, click Generate.
+For each of the three toolpath objects (trace isolation, drill/mill,
+and board outline), select the object in the "Project" tab, switch to the
+"Selected" tab, set "Create CNC Job" options, click "Generate".
 
-For the isolation job: Use the 0.010 endmill, feed 2.4, "Cut Z" should be
-maybe 0.010, with a single pass.  (1 oz copper clad board has a 0.0014
-inch thick copper layer, and it's pretty easy to mount the board with
-less than 0.003 inch wobble.)
+For the isolation job: Use the 0.010" endmill, feed 2.4 inch/min (60.1
+mm/min), "Cut Z" should be maybe -0.005 inch (-0.127mm), with a single
+pass.  (1 oz copper clad board has a 0.0014 inch (0.036mm) thick copper
+layer, and it's pretty easy to mount the board with less than 0.003 inch
+(0.076mm) wobble.)
 
-For the drill/mill and board outline jobs: Use the 0.031 endmill, feed
-5.0, "Cut Z" should be the thickness of the board + 0.005 or so, call
-it 0.070, with a depth/pass of 0.020?
+For the drill/mill and board outline jobs: Use the 0.031 inch (0.794mm)
+endmill, feed 5.0 inch/min (127 mm/min), "Cut Z" should be the thickness
+of the board + 0.005" or so, call it 0.070 inch (1.8mm), with a depth/pass
+of 0.020 inch (0.5mm)?
 
 
 ### Save the G-code
 
 In each G-code object:
 
-* Add "G20 G64 P.0005" to "Prepend to G-code".
+* If you're using mm units: Add "G21 G64 P0.01" to "Prepend to G-code".
+
+* If you're using inch units: Add "G20 G64 P0.0005" to "Prepend to
+  G-code".
 
 * Add "M2" to "Append to G-code".
 

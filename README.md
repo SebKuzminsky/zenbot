@@ -232,7 +232,7 @@ and restart for them to take effect.
 
 ### Load PCB fabrication files
 
-"Open Gerber" to load the different layers.
+"Open Gerber" to load the 'back copper' and 'edge cuts' files.
 
 "Open Excellon" to load the drill file.
 

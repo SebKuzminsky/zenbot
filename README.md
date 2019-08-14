@@ -188,8 +188,17 @@ Set "Units" to mm, to match what KiCad puts out.
 
 In the "Gerber Options" section:
 
-* Set "Isolation Routing" -> "Tool dia" to 0.010 inch (0.254 mm) which
-  matches the "PreciseBits MN208-0100-002F" endmill i'm using.
+* In "Isolation Routing":
+
+    * Set "Tool dia" to 0.254 mm (0.010 inch) which matches the
+      "PreciseBits MN208-0100-002F" endmill i'm using.
+
+    * Set "Width (# passes)" to 2.
+
+    * Set "Pass overlap" to 0.15 (this is in percent of the tool
+      diameter).
+
+    * Check the "Combine Passes" checkbox.
 
 * Set "Board cutout" -> "Tool dia" to 0.0315 inch (0.800 mm) which matches
   the "PreciseBits RCC08-0315-026F" endmill i'm using for this cut.

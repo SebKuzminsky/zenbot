@@ -232,6 +232,18 @@ In the "Excelleon Options" section:
     * Set "Tool dia" to 0.794 mm to match the diameter of the cutter
       we'll be milling holes with.
 
+In the "Geometry Options" section:
+
+* In "Create CNC Job":
+
+    * Set "Travel Z" to 0.5 mm.
+
+    * Set "Spindle Speed" to 24,000 rpm.
+
+    Those two options are the same for every operation, so it's useful
+    to set the defaults.  The other options will need to change depending
+    on the operation, so the defaults are not useful.
+
 In the "CNC Job Options" section:
 
 * In "Export G-Code":
@@ -273,13 +285,30 @@ In "Bottom Layer", select the excelleon drill file.
 Click "Mirror Object".
 
 
-### Generate trace isolation geometry from copper layer
+### Generate trace isolation geometry from the back copper layer
 
 In the Project tab, select the B.Cu object.
 
 Switch to the "Selected" tab.
 
 Click "Isolation Routing" -> "Generate Geometry".
+
+In the resulting "Geometry Object", set these options:
+
+* "Cut Z": Maybe -0.051 mm (-0.002 inch).  1 oz copper clad board has
+  a 0.036 mm (0.0014 inch) thick copper layer, and it's pretty easy to
+  mount the board with less than 0.076 mm (0.003 inch) wobble.
+
+* "Feed Rate": 60.1 mm/min (2.4 inch/min)
+
+* "Multi-Depth": disabled (since this cut is so shallow)
+
+Note: "Travel Z", "Tool dia" and "Spindle speed" should be set correctly
+from the application defaults we set up earlier.
+
+Click "Create CNC Job" -> "Generate".
+
+In the resulting "CNC Job Object", click "Export G-Code".
 
 
 ### Generate geometry for the board outline
@@ -291,6 +320,25 @@ Switch to the "Selected" tab.
 #### If you drew the board edge as a graphic polygon
 
 Click "Board cutout" -> "Generate Geometry".
+
+In the resulting "Geometry Object", set these options:
+
+* "Cut Z": Maybe -1.800 mm (-0.070 inch).  1 oz copper clad board is
+  about 0.065" thick, so this should cut through with a reasonable margin.
+
+* "Feed Rate": 127 mm/min (5.0 inch/min)
+
+* "Multi-Depth": enabled
+
+* "Depth/pass": 0.5 mm (0.200 inch)
+
+Note: "Travel Z", "Tool dia", and "Spindle speed" should all have correct
+values from the application defaults we set earlier.
+
+Click "Create CNC Job" -> "Generate".
+
+In the resulting "CNC Job Object", click "Export G-Code".
+
 
 #### If you drew the board edge as graphic lines & arcs
 
@@ -308,81 +356,35 @@ Switch to the "Selected" tab.
 
 Find the "Mill Holes" section.
 
-Set tool diameter to 0.0315 inch (0.800 mm) (to match the "PreciseBits
-RCC08-0315-026F" endmill i'm using for this cut).
+Verify that "Tool dia" has the correct default value of 0.800 mm (0.0315
+inch) (to match the "PreciseBits RCC08-0315-026F" endmill i'm using for
+this cut).
 
 Click "Mill Holes" -> "Generate Geometry".
 
-
-### Generate G-code
-
-For each of the three Geometry objects (trace isolation, drill/mill,
-and board outline), select the object in the "Project" tab, switch to
-the "Selected" tab, set "Create CNC Job" options per the info in the
-following sections,click "Generate".
-
-#### Trace Isolation
-
-* "Cut Z": Maybe -0.051 mm (-0.002 inch).  1 oz copper clad board has
-  a 0.036 mm (0.0014 inch) thick copper layer, and it's pretty easy to
-  mount the board with less than 0.076 mm (0.003 inch) wobble.
-
-* "Travel Z": 0.5 mm
-
-* "Feed Rate": 60.1 mm/min (2.4 inch/min)
-
-* "Tool dia": 0.254 mm (0.010 inch)
-
-* "Spindle speed": 24000 (you can leave this blank for the Zenbot since
-  it doesn't have a speed-controlled spindle.
-
-* "Multi-Depth": disabled
-
-Click "Create CNC Job" -> "Generate", then "Export G-Code".
-
-
-#### Edge Cuts
+In the resulting "CNC Job Object", set these options:
 
 * "Cut Z": Maybe -1.800 mm (-0.070 inch).  1 oz copper clad board is
   about 0.065" thick, so this should cut through with a reasonable margin.
-
-* "Travel Z": 0.5 mm
-
-* "Feed Rate": 127 mm/min (5.0 inch/min)
-
-* "Tool dia": 0.800 mm (0.0315 inch)
-
-* "Spindle speed": 24000 (you can leave this blank for the Zenbot since
-  it doesn't have a speed-controlled spindle.
-
-* "Multi-Depth": enabled
-
-* "Depth/pass": 0.5 mm (0.200 inch)
-
-Click "Create CNC Job" -> "Generate", then "Export G-Code".
-
-
-#### Drilling
-
-* "Cut Z": Maybe -1.800 mm (-0.070 inch).  1 oz copper clad board is
-  about 0.065" thick, so this should cut through with a reasonable margin.
-
-* "Travel Z": 0.5 mm
 
 * "Feed Rate": 100 mm/min (4.0 inch/min)
 
 * "Tool dia": 0.800 mm (0.0315 inch)
 
-* "Spindle speed": 24000 (you can leave this blank for the Zenbot since
-  it doesn't have a speed-controlled spindle.
-
 * "Multi-Depth": enabled
 
 * "Depth/pass": 0.5 mm (0.200 inch)
 
-Click "Create CNC Job" -> "Generate", then "Export G-Code".
+Note: "Travel Z" and "Spindle speed" should have the correct default
+values from Application Options.
+
+Click "Create CNC Job" -> "Generate".
+
+In the resulting "CNC Job Object", click "Export G-Code".
 
 
 # FlatCAM fixes
 
 * Actual helix milling for the holes
+
+* Ramp entry on multi-depth paths.

@@ -33,9 +33,10 @@ The screw terminals are Phoenix Contact Part #1725711, "MPT 0,5/ 8-2,54"
 
 4. Safety glasses, hearing protection, and spindle on.
 
-5. Open the `back-copper.ngc` gcode file and run it!
+5. Run the `back-copper.ngc` gcode file.
 
-6. Switch to the PreciseBits RCC08-0315-026F cutter, touch off Z.
+6. Switch to the PreciseBits RCC08-0315-026F cutter, touch off Z but
+   not X and Y.
 
 7. Safety glasses, hearing protection, and spindle on.
 

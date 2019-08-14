@@ -388,3 +388,5 @@ In the resulting "CNC Job Object", click "Export G-Code".
 * Actual helix milling for the holes
 
 * Ramp entry on multi-depth paths.
+
+* Shouldn't `G0X0Y0` at the end.

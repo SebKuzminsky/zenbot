@@ -20,6 +20,12 @@ Rated for 0.0001 runout expected, 0.0004 runout max.
 Chris Radek has one, and has worked out how to replace the spindle
 bearings.
 
+The spindle uses an O-ring as a drive belt.  I got these from the local
+hardware store, both seem to work:
+
+* 2 1/16" OD, 1 7/8" ID, 3/32" wall
+* 2 1/8" OD 1 7/8" ID, 1/8" wall
+
 
 
 

@@ -223,108 +223,94 @@ To export to FlatCAM or other board fabrication tools:
 ### One-time Setup
 
 At startup, before loading any project Gerber or Excelleon files, set
-up some options.  Open the `Preferences` tab (`Edit` -> `Preferences`).
+up some options.  Open the "Preferences" tab ("Edit" -> "Preferences").
 
-In the `Preferences` -> `General` tab:
+#### "Preferences" -> "General" tab
 
-* Set "Units" to mm, to match what KiCad puts out.
+* Set "Units" to "mm", to match what KiCad puts out.
 
-In the `Preferences` -> `GERBER` tab, in the `Gerber General` section:
+#### "Preferences" -> "GERBER" tab, "Gerber General" section
 
-* Set "Units" to mm, to match what KiCad puts out.
+* Set "Units" to "mm", to match what KiCad puts out.
 
-In the `Preferences` -> `GEOMETRY` tab, in the `Geometry Options` section:
+#### "Preferences" -> "EXCELLON" tab, "Excellon General" section
 
-* Set `Travel Z` to 0.5 mm, comfortably above the work.
+* Set "Units" to "mm".
+
+#### "Preferences" -> "EXCELLON" tab, "Excellon Options" section
+
+* Set "Operation" to "Milling".
+
+* Set "Milling Type" to "Both".
+
+* Set "Milling Diameter" to 0.794 mm to match the diameter of the cutter
+  we'll be milling holes with.
+
+* Set "Drill Tool dia" to 0.794 mm to match the diameter of the cutter
+  we'll be milling holes with.
+
+* Set "Slot Tool dia" to 0.794 mm to match the diameter of the cutter
+  we'll be milling holes with.
+
+#### "Preferences" -> "GEOMETRY" tab, "Geometry Options" section
+
+* FIXME: Set "Cut Z" to something?
+
+* Set "Travel Z" to 0.5 mm, comfortably above the work.
 
 * Set "Feedrate X-Y" to 36.6 mm/min (or whatever's appropriate for the
-cutter you're using).
+  cutter you're using).
 
 * Set "Feedrate Z" to 15 mm/min (or whatever's appropriate for the cutter
-you're using).
+  you're using).
 
-In the `Preferences` -> `TOOLS` tab, in the `Isolation Tool Options`
-section:
+* Set "Spindle speed" to 24000 rpm.
 
-* Set `Tools Dia` to 0.254 mm (0.010 inch) which matches the "PreciseBits
+#### "Preferences" -> "CNC-JOB" tab, "CNC Job Adv. Options" section
+
+* Set "Controller" to "LinuxCNC".
+
+#### "Preferences" -> "CNC-JOB" tab, "CNC Job Editor" section
+
+* Set "Prepend to G-Code" to "G21 G64 P0.01" for mm.
+
+* Set "Append to G-Code" to "M2".
+
+#### "Preferences" -> "TOOLS" tab, "Isolation Tool Options" section
+
+* Set "Tools Dia" to 0.254 mm (0.010 inch) which matches the "PreciseBits
   MN208-0100-002F" endmill i'm using.
 
-* FIXME: Set `Cut Z` to -0.127 mm (0.005 inch) which matches the
+* FIXME: Set "Cut Z" to -0.127 mm (0.005 inch) which matches the
   axial depth-of-cut recommended for slotting with the "PreciseBits
   MN208-0100-002F" endmill i'm using.
 
-* Set `Tools Type` to `Circular`.
+* Set "Tools Type" to "Circular".
 
-* Set `Passes` to 2.
+* Set "Passes" to 2.
 
-* Set `Overlap` to 15% (this is in percent of the tool diameter).
+* Set "Overlap" to 15% (this is in percent of the tool diameter).
 
-* Check the `Combine` checkbox.
+* Check the "Combine" checkbox.
 
-In the `Preferences` -> `TOOLS` tab, in the `Cutout Tool Options` section:
+#### "Preferences" -> "TOOLS" tab, "Cutout Tool Options" section
 
-* Set `Tool Diameter` to 0.800 mm (0.0315 inch) which matches the
+* Set "Tool Diameter" to 0.800 mm (0.0315 inch) which matches the
   "PreciseBits RCC08-0315-026F" endmill i'm using for this cut.
 
-* Set `Cut Z` to -1.8 mm, just enough to cut all the way through the
+* Set "Cut Z" to -1.8 mm, just enough to cut all the way through the
   circuit board.
 
-* Set `Margin` to 0.000 mm (0.0 inch).
+* Uncheck "Multi-Depth".
 
-* Set `Gaps` to `None`.  `Gaps` are work-holding tabs in the cutout
+* Set "Margin" to 0.000 mm (0.0 inch).
+
+* Set "Gaps" to "None".  "Gaps" are work-holding tabs in the cutout
   tool path.  Since we're using double-sided tape for work holding no
   work-holding tabs are needed.
 
-In the `Preferences` -> `EXCELLON` tab, in the `Excellon General` section:
-
-* Set `Units` to `mm`.
-
-In the `Preferences` -> `EXCELLON` tab, in the `Excellon Options` section:
-
-* Set `Operation` to `Milling`.
-
-* Set `Milling Type` to `Both`.
-
-* Set `Milling Diameter` to 0.794 mm to match the diameter of the cutter
-  we'll be milling holes with.
-
-* Set `Drill Tool dia` to 0.794 mm to match the diameter of the cutter
-  we'll be milling holes with.
-
-* Set `Slot Tool dia` to 0.794 mm to match the diameter of the cutter
-  we'll be milling holes with.
-
-Click the `Save` button at the bottom right.
-
-**OK to here**
-
-In the "Excelleon Options" section:
-
-In the "Geometry Options" section:
-
-* In "Create CNC Job":
-
-    * Set "Travel Z" to 0.5 mm.
-
-    * Set "Spindle Speed" to 24,000 rpm.
-
-    Those two options are the same for every operation, so it's useful
-    to set the defaults.  The other options will need to change depending
-    on the operation, so the defaults are not useful.
-
-In the "CNC Job Options" section:
-
-* In "Export G-Code":
-
-    * Set "Prepend to G-Code": "G21 G64 P0.01" for mm, or "G20 G64
-      P0.0005" for inch.
-
-    * Set "Append to G-Code": "m2"
-
-    * Disable "Dwell".
-
-Go to "File" -> "Save Defaults".  If you changed any of the application
-settings you have to quit FlatCAM and restart for them to take effect.
+Click the `Apply` button at the bottom right, then the `Save` button at
+the bottom right.
 
 
 ### Load PCB fabrication files
@@ -336,54 +322,91 @@ settings you have to quit FlatCAM and restart for them to take effect.
 
 ### Mirror the bottom copper and the drill locations
 
-Select "Tool" -> "Double-Sided PCB Tool".
+In the "Project" tab, select the bottom copper object.
 
-In "Bottom Layer", select the bottom copper gerber.
+Switch to the "Properties" tab and click on the "Transformations" button.
+This will create the "Transform Tool" tab and switch to it.
 
-Set "Mirror Axis" to "Y".
+In the "Mirror (Flip)" section, click the "Flip on Y" button.
 
-Set "Axis Location" to "Box".
-
-Set "Point/Box" to the edge cuts gerber.
-
-Click "Mirror Object".
-
-In "Bottom Layer", select the excelleon drill file.
-
-Click "Mirror Object".
+Repeat for the drill object.
 
 
 ### Generate trace isolation geometry from the back copper layer
 
-In the Project tab, select the B.Cu object.
+From the "Tool" menu, select the "Isolation Tool".  This will create the
+"Isolation Tool" tab and switch to it.
 
-Switch to the "Selected" tab.
+In the "GERBER" section, select the back copper object.
 
-Click "Isolation Routing" -> "Generate Geometry".
+Click the "Generate Geometry" button.
 
 In the resulting "Geometry Object", set these options:
 
-* "Cut Z": Maybe -0.051 mm (-0.002 inch).  1 oz copper clad board has
+* "Cut Z": Maybe -0.127 mm (-0.005 inch).  1 oz copper clad board has
   a 0.036 mm (0.0014 inch) thick copper layer, and it's pretty easy to
-  mount the board with less than 0.076 mm (0.003 inch) wobble.
-
-* "Feed Rate": 60.1 mm/min (2.4 inch/min)
+  mount the board with less than 0.076 mm (0.003 inch) wobble.  FIXME
 
 * "Multi-Depth": disabled (since this cut is so shallow)
 
-Note: "Travel Z", "Tool dia" and "Spindle speed" should be set correctly
-from the application defaults we set up earlier.
+Note: "Travel Z", "Feedrate X-Y", "Feedrate Z" and "Spindle speed" should be set correctly
+from the default settings we set up earlier.
 
-Click "Create CNC Job" -> "Generate".
+Click "Generate CNCJob object".
 
-In the resulting "CNC Job Object", click "Export G-Code".
+In the resulting "CNC Job Object", click "Save CNC Code".
 
 
 ### Generate geometry for the board outline
 
-In the Project tab, select the Edge.Cuts object.
+From the "Tool" menu, select the "Cutout PCB" tool.  This will create the
+"Cutout Tool" tab and switch to it.
 
-Switch to the "Selected" tab.
+In the "Source Object" section, select the edge cuts object.
+
+Verify settings, they should all be correct from the defaults we set
+up earlier.
+
+Click the "Generate Geometry" button (either one seems to work).
+
+Back in the "Project" tab, double-click on the edge cuts geometry object.
+
+Verify parameters:
+
+* "Cut Z" should be -1.800 mm, to cut all the way through the board.
+
+* Enable "Multi-Depth" and set the depth to 0.650 mm.  FIXME
+
+
+**OK to here**
+
+**Notes** Standardize the cutting tools:
+
+    isolation:
+        carbide
+        2-flute, sq
+        dia: 0.010 inch, 0.254 mm
+        loc: 1.5d, 0.015 inch, 0.356 mm
+        Fz (fpt):
+            DC 0.005: 0.000048 inch, 0.0012192 mm
+            DC 0.010: 0.000099 inch, 0.0025146 mm
+            DC 0.016: 0.000150 inch, 0.0038100 mm
+        slotting Ap (axial depth of cut): up to 0.2 DC
+
+        FIXME: consider 4-flute, ball?
+
+    edge & holes:
+        carbide
+        4-flute, sq (FIXME?)
+        dia: 0.0313 inch, 0.794 mm
+        loc: 3d, 0.0938 inch, 2.382 mm
+        Fz (fpt):
+            DC 
+
+        FIXME: what's the smallest diameter hole we'll need to helix-mill?
+        whatever the finest lead we'll want to support is.
+
+
 
 #### If you drew the board edge as a graphic polygon
 

@@ -159,6 +159,7 @@ I've been using MG Chemicals #506:
     1 oz.
     6.00" x 4.00" (152.4mm x 101.6mm)
     the copper layer is 0.0014 inch (0.036 mm) thick
+    the board is 1.6 mm (.0630 inch) thick
 
 $7.14 from Digi-Key.
 

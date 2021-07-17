@@ -129,9 +129,12 @@ From Kyocera:
         ipt (slotting, Ap=0.5d, Ae=1.0d): 0.00003-0.00005
 
         slotting (5 thou deep, 10 thou wide):
-            0.00003 inch/tooth * 2 tooth/rev * 24000 rev/sec
-            0.00006 inch/rev * 24000 rev/sec
-            1.44000 inch/sec
+            0.00003 inch/tooth * 2 tooth/rev * 24000 rev/min
+            0.00006 inch/rev * 24000 rev/min
+            1.44000 inch/min
+
+            1.44000 inch/min * 25.4 mm/inch
+            36.6 mm/min
 
         diameter = 0.010 inch
         circumference = 0.031415 inch = 0.0026179939 feet

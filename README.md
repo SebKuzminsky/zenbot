@@ -378,6 +378,16 @@ Verify parameters:
 * Enable "Multi-Depth" and set the depth to 0.650 mm.  FIXME
 
 
+### Problems/bugs/issues
+
+* G-code filename extension is .nc, should be .ngc
+
+* Disable tool changes
+
+* Rapid down to close to the work before switching to feed moves, it takes forever.
+
+* helix milling doesn't work?
+
 **OK to here**
 
 **Notes** Standardize the cutting tools:
@@ -404,7 +414,8 @@ Verify parameters:
             DC 
 
         FIXME: what's the smallest diameter hole we'll need to helix-mill?
-        whatever the finest lead we'll want to support is.
+        whatever the finest lead we'll want to support is.  The smallest
+        hole in the BP spindle encoder board is 0.800 mm
 
 
 
@@ -684,4 +695,4 @@ In the resulting "CNC Job Object", click "Export G-Code".
 
 * Ramp entry on multi-depth paths.
 
-* Shouldn't `G0X0Y0` at the end.
+* Shouldn't `G0X0Y0` at the end.  (Fixed in 8.994?)

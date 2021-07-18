@@ -132,36 +132,50 @@ MSC prices:
     Your Price $14.87 ea.
 
 
-From Kyocera:
+## Reference info from Kyocera
 
-    http://www.kyoceraprecisiontools.com/micro/speeds-feeds/micro-end-mills-in.html
+### Old
 
-    Ap = Axial engagement
-    Ae = Radial engagement
+<http://web.archive.org/web/20200128073523/http://www.kyoceraprecisiontools.com/micro/speeds-feeds/micro-end-mills-in.html>
 
-    Solid carbide endmills (d=0.010) in soft copper alloy (Bronze,
-    300-350 sfm):
+Click on "Technical Info", then "Speeds & Feeds", then select "Standard
+Carbide Micro End Mills (Inch)" with the appropriate diameter range.
 
-        ipt (roughing, Ap=1.0d, Ae=0.3d): 0.00004-0.00008
-        ipt (finishing, Ap=1.0d, Ae=0.1d): 0.00008-0.00016
-        ipt (slotting, Ap=0.5d, Ae=1.0d): 0.00003-0.00005
+### New
 
-        slotting (5 thou deep, 10 thou wide):
-            0.00003 inch/tooth * 2 tooth/rev * 24000 rev/min
-            0.00006 inch/rev * 24000 rev/min
-            1.44000 inch/min
+<https://www.kyocera-sgstool.com/digital-catalog>
 
-            1.44000 inch/min * 25.4 mm/inch
-            36.6 mm/min
+Select a micro endmill and look at "Literature 1", cached in "datasheets":
 
-        diameter = 0.010 inch
-        circumference = 0.031415 inch = 0.0026179939 feet
-        speed = 24,000 rev/min
-        0.00262 feet/rev * 24000 rev/min
-        62.8318536 sfm, way too low but what can you do
 
-    Solid carbide endmills (d=0.010) in hard copper alloy (Brass,
-    240-290 sfm): not recommended
+## My conclusions
+
+> Ap = Axial engagement
+> Ae = Radial engagement
+>
+> Solid carbide endmills (d=0.010) in soft copper alloy (Bronze,
+> 300-350 sfm):
+>
+>     ipt (roughing, Ap=1.0d, Ae=0.3d): 0.00004-0.00008
+>     ipt (finishing, Ap=1.0d, Ae=0.1d): 0.00008-0.00016
+>     ipt (slotting, Ap=0.5d, Ae=1.0d): 0.00003-0.00005
+>
+>     slotting (5 thou deep, 10 thou wide):
+>         0.00003 inch/tooth * 2 tooth/rev * 24000 rev/min
+>         0.00006 inch/rev * 24000 rev/min
+>         1.44000 inch/min
+>
+>         1.44000 inch/min * 25.4 mm/inch
+>         36.6 mm/min
+>
+>     diameter = 0.010 inch
+>     circumference = 0.031415 inch = 0.0026179939 feet
+>     speed = 24,000 rev/min
+>     0.00262 feet/rev * 24000 rev/min
+>     62.8318536 sfm, way too low but what can you do
+>
+> Solid carbide endmills (d=0.010) in hard copper alloy (Brass,
+> 240-290 sfm): not recommended
 
 
 

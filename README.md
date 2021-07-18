@@ -150,32 +150,38 @@ Select a micro endmill and look at "Literature 1", cached in "datasheets":
 
 ## My conclusions
 
-> Ap = Axial engagement
-> Ae = Radial engagement
->
-> Solid carbide endmills (d=0.010) in soft copper alloy (Bronze,
-> 300-350 sfm):
->
->     ipt (roughing, Ap=1.0d, Ae=0.3d): 0.00004-0.00008
->     ipt (finishing, Ap=1.0d, Ae=0.1d): 0.00008-0.00016
->     ipt (slotting, Ap=0.5d, Ae=1.0d): 0.00003-0.00005
->
->     slotting (5 thou deep, 10 thou wide):
->         0.00003 inch/tooth * 2 tooth/rev * 24000 rev/min
->         0.00006 inch/rev * 24000 rev/min
->         1.44000 inch/min
->
->         1.44000 inch/min * 25.4 mm/inch
->         36.6 mm/min
->
->     diameter = 0.010 inch
->     circumference = 0.031415 inch = 0.0026179939 feet
->     speed = 24,000 rev/min
->     0.00262 feet/rev * 24000 rev/min
->     62.8318536 sfm, way too low but what can you do
->
-> Solid carbide endmills (d=0.010) in hard copper alloy (Brass,
-> 240-290 sfm): not recommended
+* Ap = Axial engagement
+* Ae = Radial engagement
+
+### Solid carbide endmills (d=0.010 inch) in soft copper alloy (Bronze, 300-350 sfm)
+
+* ipt (roughing, Ap=1.0d, Ae=0.3d): 0.00004-0.00008
+* ipt (finishing, Ap=1.0d, Ae=0.1d): 0.00008-0.00016
+* ipt (slotting, Ap=0.5d, Ae=1.0d): 0.00003-0.00005
+
+#### Slotting (5 thou deep, 10 thou wide)
+
+feed rate (inch):
+
+* `0.00003 inch/tooth * 2 tooth/rev * 24000 rev/min`
+* `0.00006 inch/rev * 24000 rev/min`
+* `1.44000 inch/min`
+
+feed rate (metric):
+
+* `1.44000 inch/min * 25.4 mm/inch`
+* `36.6 mm/min`
+
+SFM:
+
+* cutter circumference = 0.031415 inch = 0.0026179939 feet
+* spindle speed = 24,000 rev/min
+* `0.00262 feet/rev * 24000 rev/min`
+* `62.8318536 sfm`, way too low but what can you do
+
+### Solid carbide endmills (d=0.010) in hard copper alloy (Brass 240-290 sfm)
+
+Not recommended.
 
 
 

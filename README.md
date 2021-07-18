@@ -67,7 +67,25 @@ sure you measure the actual diameter carefully.
 
 
 
-# Speeds and Feeds
+# Copper clad board
+
+The work table can hold up to 4" x 6" boards.
+
+I've been using MG Chemicals #506:
+
+    Proto Board Copper Clad FR4
+    Single Sided
+    1 oz.
+    6.00" x 4.00" (152.4mm x 101.6mm)
+    the copper layer is 0.0014 inch (0.036 mm) thick
+    the board is 1.6 mm (.0630 inch) thick
+
+$7.14 from Digi-Key.
+
+
+
+
+# Cutting Tools with Speeds and Feeds
 
 
 ## PreciseBits RCC08-0315-026F
@@ -144,24 +162,6 @@ From Kyocera:
 
     Solid carbide endmills (d=0.010) in hard copper alloy (Brass,
     240-290 sfm): not recommended
-
-
-
-
-# Copper clad board
-
-The work table can hold up to 4" x 6" boards.
-
-I've been using MG Chemicals #506:
-
-    Proto Board Copper Clad FR4
-    Single Sided
-    1 oz.
-    6.00" x 4.00" (152.4mm x 101.6mm)
-    the copper layer is 0.0014 inch (0.036 mm) thick
-    the board is 1.6 mm (.0630 inch) thick
-
-$7.14 from Digi-Key.
 
 
 

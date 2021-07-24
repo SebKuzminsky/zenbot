@@ -99,6 +99,8 @@ Plunge feed: 2.5 ipm, 62 mm/min
 <https://www.precisebits.com/products/carbidebits/fcrouter.asp?product_id=713>
 <https://www.precisebits.com/products/carbidebits/fdrouter.asp?product_id=742>
 
+$4.77
+
 
 ## PreciseBits MN208-0100-002F
 
@@ -110,6 +112,8 @@ Plunge feed: 1.2 ipm, 30 mm/min
 
 <https://www.precisebits.com/products/carbidebits/precisebit-stub.asp?product_id=564>
 <https://www.precisebits.com/products/carbidebits/precisebit-stub.asp?product_id=567>
+
+$21
 
 
 ## Accupro 0.010" endmill (MSC #37290426)

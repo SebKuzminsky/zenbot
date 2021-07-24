@@ -47,10 +47,10 @@ Chris Radek says:
 
     Duck brand "Indoor Heavy Duty Carpet Tape"
 
-    https://www.findtape.com/shop/product-images.aspx?pid=646
+    <https://www.findtape.com/shop/product-images.aspx?pid=646>
 
 Try NYC CNC's technique of "blue painter's tape/ca/blue painter's tape":
-https://www.youtube.com/watch?time_continue=628&v=r6DCvtcU8_M
+<https://www.youtube.com/watch?time_continue=628&v=r6DCvtcU8_M>
 
 
 
@@ -96,8 +96,8 @@ Speed: 24,000
 Feed: 5 ipm, 125 mm/min
 Plunge feed: 2.5 ipm, 62 mm/min
 
-https://www.precisebits.com/products/carbidebits/fcrouter.asp?product_id=713
-https://www.precisebits.com/products/carbidebits/fdrouter.asp?product_id=742
+<https://www.precisebits.com/products/carbidebits/fcrouter.asp?product_id=713>
+<https://www.precisebits.com/products/carbidebits/fdrouter.asp?product_id=742>
 
 
 ## PreciseBits MN208-0100-002F
@@ -108,8 +108,8 @@ Speed: 24,000
 Feed: 2.4 ipm, 60 mm/min
 Plunge feed: 1.2 ipm, 30 mm/min
 
-https://www.precisebits.com/products/carbidebits/precisebit-stub.asp?product_id=564
-https://www.precisebits.com/products/carbidebits/precisebit-stub.asp?product_id=567
+<https://www.precisebits.com/products/carbidebits/precisebit-stub.asp?product_id=564>
+<https://www.precisebits.com/products/carbidebits/precisebit-stub.asp?product_id=567>
 
 
 ## Accupro 0.010" endmill (MSC #37290426)
